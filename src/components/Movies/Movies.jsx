@@ -35,20 +35,20 @@ export class Movies extends Component {
 	}
 
 	render() {
-		//const { page } = this.props.match.params;
+		const { page } = this.props.match.params;
 		const {
 			moviesOnPage,
 			numOfPages
 		} = this.props;
-		console.log('MOVIES RENDER', this.props);
+		console.log('MOVIES RENDER CURRENT PAGE', page, this.props);
 		return (
 			<div>
-				<MoviesList 
-					moviesOnPage={moviesOnPage}
-				/>
-				<br />
 				<MoviesPaginaiton
 					numOfPages={numOfPages}
+				/>
+				<br />
+				<MoviesList
+					moviesOnPage={moviesOnPage}
 				/>
 			</div>
 		);

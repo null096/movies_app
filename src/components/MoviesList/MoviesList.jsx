@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Proptypes from 'prop-types';
+import MovieItem from '../MovieItem/MovieItem';
 
 export class MoviesList extends Component {
 	static propTypes = {
@@ -12,13 +13,16 @@ export class MoviesList extends Component {
 		} = this.props;
 
 		return (
-			<div>
+			<div className="movies-container">
 				{
-					moviesOnPage.map((_, i) => (
-						<span key={i}>
-							{`${i} `}
-						</span>
-					))
+					moviesOnPage.map((movie) => (
+						<MovieItem
+							key={movie.id}
+							movie={movie}
+						/>
+					))/*
+				error in axios catch
+				| wrong page num error handeling */
 				}
 			</div>
 		);
