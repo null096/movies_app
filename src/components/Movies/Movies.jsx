@@ -35,16 +35,17 @@ export class Movies extends Component {
 	}
 
 	render() {
-		const { page } = this.props.match.params;
+		const currentPage = parseInt(this.props.match.params.page);
 		const {
 			moviesOnPage,
 			numOfPages
 		} = this.props;
-		console.log('MOVIES RENDER CURRENT PAGE', page, this.props);
+		console.log('MOVIES RENDER CURRENT PAGE', currentPage, this.props);
 		return (
-			<div>
+			<div className="movies-container">
 				<MoviesPaginaiton
 					numOfPages={numOfPages}
+					currentPage={currentPage}
 				/>
 				<br />
 				<MoviesList

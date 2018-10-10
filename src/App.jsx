@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-//import Header from './components/Header/Header';
+import Header from './components/Header/Header';
 import Movies from './components/Movies/Movies';
 import Page404 from './components/Page404/Page404';
 import {
@@ -11,7 +11,7 @@ class App extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				{/* <Header /> */}
+				<Header />
 				<Switch>
 					<Route
 						path={`${PAGE_WITH_MOVIES}/:page`}

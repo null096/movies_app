@@ -30,7 +30,7 @@ export class MovieItem extends Component {
 
 	getMovieTitleWrapperClasses = () => ([
 		'movie-title-wrapper',
-		!this.isMovieHasImage ? 'is-movie-title-wrapper-show' : ''
+		!this.isMovieHasImage ? 'is-background-gray' : ''
 	].join(' '));
 
 	getMovieTitleClasses = () => ([
@@ -70,9 +70,9 @@ export class MovieItem extends Component {
 				{
 					isImageLoaded &&
 					<div className={movieTitleWrapperClasses}>
-						<span className={movieTitleClasses}>
+						<div className={movieTitleClasses}>
 							{movie.original_title}
-						</span>
+						</div>
 					</div>
 				}
 			</div>

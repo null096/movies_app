@@ -30,8 +30,7 @@ export const uploadMoviesForPage = (page) => (dispatch) => {
 			dispatch(moviesOnPageUpdated(moviesOnPage));
 		})
 		.catch((e) => {
-			const errMes = e.response.data.errors[0];
-			console.log(errMes);
+			console.error(e);
 		});
 };
 

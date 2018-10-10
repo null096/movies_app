@@ -13,18 +13,23 @@ export class MoviesList extends Component {
 		} = this.props;
 
 		return (
-			<div className="movies-container">
-				{
-					moviesOnPage.map((movie) => (
-						<MovieItem
-							key={movie.id}
-							movie={movie}
-						/>
-					))/*
-				error in axios catch
-				| wrong page num error handeling */
-				}
-			</div>
+			<React.Fragment>
+				<span className="movie-list-title">
+					Latest Releases
+				</span>
+				<div className="movies-list-container">
+					{
+						moviesOnPage.map((movie) => (
+							<MovieItem
+								key={movie.id}
+								movie={movie}
+							/>
+						))/*
+					error in axios catch
+					| wrong page num error handeling */
+					}
+				</div>
+			</React.Fragment>
 		);
 	}
 }
