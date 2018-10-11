@@ -170,5 +170,5 @@ a {
 }
 
 .is-current-page {
-        color: rgb(110, 0, 170);
+    color: rgb(110, 0, 170) !important;
 }

@@ -24,9 +24,7 @@ export class MoviesList extends Component {
 								key={movie.id}
 								movie={movie}
 							/>
-						))/*
-					error in axios catch
-					| wrong page num error handeling */
+						))
 					}
 				</div>
 			</React.Fragment>

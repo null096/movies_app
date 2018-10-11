@@ -76,6 +76,11 @@ export class MoviesPaginaiton extends Component {
 				);
 			}
 		}
+		if (currentPage === 1
+			&& numOfPages > NUM_OF_NEAR_PAGES_ON_ONE_SIDE + 1
+		) {
+			res.push(<span>...</span>);
+		}
 
 		return res;
 	}
