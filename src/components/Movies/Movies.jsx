@@ -30,8 +30,6 @@ export class Movies extends Component {
 		if (oldPage !== newPage) {
 			uploadMoviesForPage(newPage);
 		}
-		//console.log('old',prevProps,prevState);
-		//console.log('current',this.props, this.state);
 	}
 
 	render() {
@@ -43,13 +41,12 @@ export class Movies extends Component {
 		console.log('MOVIES RENDER CURRENT PAGE', currentPage, this.props);
 		return (
 			<div className="movies-container">
+				<MoviesList
+					moviesOnPage={moviesOnPage}
+				/>
 				<MoviesPaginaiton
 					numOfPages={numOfPages}
 					currentPage={currentPage}
-				/>
-				<br />
-				<MoviesList
-					moviesOnPage={moviesOnPage}
 				/>
 			</div>
 		);

@@ -11,8 +11,6 @@ import {
 import axios from 'axios';
 
 export const uploadMoviesForPage = (page) => (dispatch) => {
-	//console.log('UPLOAD ACTION CALLED');
-
 	axios.get(URL_TO_MOVIES_NOW_PLAYING, {
 		params: {
 			api_key: API_KEY,
@@ -20,7 +18,6 @@ export const uploadMoviesForPage = (page) => (dispatch) => {
 		},
 	})
 		.then((res) => {
-			//console.log('RESPONSE RECEIVED ', res)
 			const {
 				results: moviesOnPage,
 				total_pages,
