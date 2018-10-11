@@ -13,7 +13,7 @@ export class MoviesList extends Component {
 		} = this.props;
 
 		return (
-			<React.Fragment>
+			<div className="movie-list">
 				<span className="movie-list-title">
 					Latest Releases
 				</span>
@@ -27,7 +27,7 @@ export class MoviesList extends Component {
 						))
 					}
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 }

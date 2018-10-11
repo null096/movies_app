@@ -19,7 +19,7 @@ header {
 }
 
 .header-wrapper {
-    width: 80%;
+    width: 100%;
     max-width: 1025px;
     display: flex;
     flex-flow: row nowrap;
@@ -28,7 +28,7 @@ header {
 }
 
 .header-logo {
-    margin: 0 15px 0 10px;
+    margin: 0 20px 0 15px;
 }
 
 .header-logo-text {
@@ -38,9 +38,12 @@ header {
 
 .movies-container {
     margin: 50px auto 0;
-    width: 80%;
-    max-width: 1025px;
     min-width: 205px;
+}
+
+.movie-list {
+    margin: 0 auto;
+    max-width: 1025px;
 }
 
 .movie-list-title {
@@ -171,4 +174,36 @@ a {
 
 .is-current-page {
     color: rgb(110, 0, 170) !important;
+}
+
+@media screen and (max-width: 1050px) {
+    .movie-list,
+    .header-wrapper {
+        max-width: 820px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .movie-list,
+    .header-wrapper {
+        max-width: 410px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .movie-list {
+        max-width: 205px;
+    }
+
+    .pagination li {
+        display: none;
+    }
+
+    .pagination ul li:nth-child(-n+2) {
+        display: inline-block;
+    }
+
+    .pagination ul li:nth-last-child(-n+2) {
+        display: inline-block;
+    }
 }
