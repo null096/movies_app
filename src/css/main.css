@@ -65,16 +65,20 @@ header {
     box-shadow: 0 0 0 .2em rgba(0, 0, 0, 0.1);
 }
 
-.movie-item:hover .movie-title {
-    display: block;
-}
-
 .movie-item:hover .movie-image {
     filter: blur(1px);
 }
 
-.movie-item:hover .movie-title-wrapper {
-    background-color: rgb(0, 0, 0, 0.65);
+.movie-item:hover > div:not(.is-background-gray) {
+    background-color: rgb(50, 50, 50, 0.65);
+}
+
+.movie-item:hover .movie-title {
+    display: block;
+}
+
+.is-background-gray {
+    background-color: rgba(50, 0, 100, 0.65);
 }
 
 .movie-image {
@@ -96,10 +100,6 @@ header {
     align-items: center;
     border-radius: 5px;
     transition: background-color 0.2s;
-}
-
-.is-background-gray {
-    background-color: rgba(0, 0, 0, 0.65);
 }
 
 .movie-title {
