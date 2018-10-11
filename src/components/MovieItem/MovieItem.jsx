@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
-	URL_TO_MOVIE_IMAGE,
+	URL_TO_MOVIE_IMAGE_W185,
+	MOVIE_MODAL,
 } from '../../constants/constants';
+import {
+	showModalWindow
+} from '../../actions/modal/modal';
 import Proptypes from 'prop-types';
 
 export class MovieItem extends Component {
 	static propTypes = {
 		movie: Proptypes.object.isRequired,
+		movieIndex: Proptypes.number.isRequired,
+		showModalWindow: Proptypes.func.isRequired
 	};
 
 	constructor(props) {
@@ -19,7 +26,7 @@ export class MovieItem extends Component {
 		};
 
 		this.isMovieHasImage = movie.poster_path;
-		this.imgSrc = `${URL_TO_MOVIE_IMAGE}/${movie.poster_path}`;
+		this.imgSrc = `${URL_TO_MOVIE_IMAGE_W185}/${movie.poster_path}`;
 	}
 
 	onImageLoad = () => {
@@ -38,6 +45,19 @@ export class MovieItem extends Component {
 		!this.isMovieHasImage ? 'is-title-show' : '',
 	].join(' '));
 
+	onClickHandle = () => {
+		const {
+			showModalWindow,
+			movie,
+			movieIndex
+		} = this.props;
+
+		showModalWindow(MOVIE_MODAL, {
+			movieIndex,
+			movie
+		});
+	}
+
 	render() {
 		const {
 			movie
@@ -49,7 +69,10 @@ export class MovieItem extends Component {
 		const movieTitleClasses = this.getMovieTitleClasses();
 
 		return (
-			<div className="movie-item">
+			<div
+				className="movie-item"
+				onClick={this.onClickHandle}
+			>
 				{
 					this.isMovieHasImage &&
 					<React.Fragment>
@@ -80,4 +103,11 @@ export class MovieItem extends Component {
 	}
 }
 
-export default MovieItem;
+const mapDispathToProps = (dispatch) => ({
+	showModalWindow: (compName, params) => dispatch(showModalWindow(compName, params))
+});
+
+export default connect(
+	null,
+	mapDispathToProps,
+)(MovieItem);

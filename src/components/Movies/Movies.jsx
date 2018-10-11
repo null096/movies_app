@@ -38,7 +38,7 @@ export class Movies extends Component {
 			moviesOnPage,
 			numOfPages
 		} = this.props;
-		console.log('MOVIES RENDER CURRENT PAGE', currentPage, this.props);
+		
 		return (
 			<div className="movies-container">
 				<MoviesList

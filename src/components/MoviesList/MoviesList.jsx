@@ -19,10 +19,11 @@ export class MoviesList extends Component {
 				</span>
 				<div className="movies-list-container">
 					{
-						moviesOnPage.map((movie) => (
+						moviesOnPage.map((movie, i) => (
 							<MovieItem
 								key={movie.id}
 								movie={movie}
+								movieIndex={i}
 							/>
 						))
 					}
