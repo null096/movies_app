@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 import {
-	URL_TO_MOVIE_IMAGE_W780,
+	URL_TO_MOVIE_IMAGE_ORIGINAL,
 	URL_TO_MOVIE_IMAGE_W185,
 } from '../../constants//constants';
 import { closeModalWindow } from '../../actions/modal/modal';
@@ -27,10 +27,10 @@ export class ModalWindowWithMovie extends Component {
 			closeModalWindow,
 			// movieIndex
 		} = this.props;
-		const imgSrcW780 = `${URL_TO_MOVIE_IMAGE_W780}${movie.poster_path}`;
+		const imgSrcW780 = `${URL_TO_MOVIE_IMAGE_ORIGINAL}${movie.poster_path}`;
 		const imgSrcW185 = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
 		const releaseDateStr = new Date(movie.release_date).toLocaleDateString();
-		
+
 		return (
 			<div className="modal-movie">
 				<img
