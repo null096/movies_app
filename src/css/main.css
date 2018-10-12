@@ -219,32 +219,34 @@ a {
 .modal-content {
     overflow: auto;
     position: absolute;
-    top: 64px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    color: #ffffff;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
+    background-color: rgba(128, 128, 128, 0.3);
 }
 
 .modal-close-btn {
     position: absolute;
-    top: 0;
+    top: 64px;
     left: 0;
 }
 
 .modal-next-btn {
     position: absolute;
-    top: 0;
+    top: 64px;
     right: 0;
 }
 
 .movie-info {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     font-weight: bold;
 }
 
@@ -254,7 +256,7 @@ a {
 }
 
 .modal-info-text {
-    width: 450px;
+    max-width: 500px;
     line-height: 1.2em;
     display: flex;
     flex-flow: column nowrap;
@@ -266,20 +268,20 @@ a {
 }
 
 #modal-title {
-    margin: 10px 0 15px 0;
+    margin: 15px 0 15px 0;
 }
 
 #modal-score {
     margin: 0 10px 0 0;
     padding: 0 10px 0 0;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #modal-info-text-second {
-    margin: 25px 0 0 0;
+    margin: 20px 0 10px 0;
     padding: 14px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     font-weight: 500;
 }
 
