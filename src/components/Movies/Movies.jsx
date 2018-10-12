@@ -6,6 +6,7 @@ import MoviesPaginaiton from '../MoviesPagination/MoviesPaginaiton';
 import {
 	uploadMoviesForPage
 } from '../../actions/movies/movies';
+import Header from '../Header/Header';
 
 export class Movies extends Component {
 	static propTypes = {
@@ -38,17 +39,20 @@ export class Movies extends Component {
 			moviesOnPage,
 			numOfPages
 		} = this.props;
-		
+
 		return (
-			<div className="movies-container">
-				<MoviesList
-					moviesOnPage={moviesOnPage}
-				/>
-				<MoviesPaginaiton
-					numOfPages={numOfPages}
-					currentPage={currentPage}
-				/>
-			</div>
+			<React.Fragment>
+				<Header />
+				<div className="movies-container">
+					<MoviesList
+						moviesOnPage={moviesOnPage}
+					/>
+					<MoviesPaginaiton
+						numOfPages={numOfPages}
+						currentPage={currentPage}
+					/>
+				</div>
+			</React.Fragment>
 		);
 	}
 }

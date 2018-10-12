@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Proptypes from 'prop-types';
-import Header from './components/Header/Header';
 import Movies from './components/Movies/Movies';
 import Page404 from './components/Page404/Page404';
 import ModalWindowWithMovie
@@ -21,6 +20,8 @@ class App extends Component {
 	};
 
 	getModal() {
+		if (!this.isShouldApplyModal()) return null;
+
 		const {
 			params,
 			compName,
@@ -43,29 +44,25 @@ class App extends Component {
 	}
 
 	getContent() {
-		if (this.isShouldApplyModal()) {
-			return this.getModal();
-		} else {
-			return (
-				<Switch>
-					<Route
-						path={`${PAGE_WITH_MOVIES}/:page`}
-						component={Movies}
-					/>
-					<Route
-						path="*"
-						component={Page404}
-					/>
-				</Switch>
-			);
-		}
+		return (
+			<Switch>
+				<Route
+					path={`${PAGE_WITH_MOVIES}/:page`}
+					component={Movies}
+				/>
+				<Route
+					path="*"
+					component={Page404}
+				/>
+			</Switch>
+		);
 	}
 
 	render() {
 		return (
 			<React.Fragment>
-				<Header />
 				{this.getContent()}
+				{this.getModal()}
 			</React.Fragment>
 		);
 	}
@@ -78,4 +75,8 @@ const mapStateToProps = (state) => ({
 
 export default connect(
 	mapStateToProps,
+	null,
+	null, {
+		pure: false
+	}
 )(App);

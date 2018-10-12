@@ -9,7 +9,7 @@ import {
 } from '../../actions/modal/modal';
 import Proptypes from 'prop-types';
 
-export class MovieItem extends Component {
+export class MovieListItem extends Component {
 	static propTypes = {
 		movie: Proptypes.object.isRequired,
 		movieIndex: Proptypes.number.isRequired,
@@ -26,7 +26,7 @@ export class MovieItem extends Component {
 		};
 
 		this.isMovieHasImage = movie.poster_path;
-		this.imgSrc = `${URL_TO_MOVIE_IMAGE_W185}/${movie.poster_path}`;
+		this.imgSrc = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
 	}
 
 	onImageLoad = () => {
@@ -110,4 +110,4 @@ const mapDispathToProps = (dispatch) => ({
 export default connect(
 	null,
 	mapDispathToProps,
-)(MovieItem);
+)(MovieListItem);

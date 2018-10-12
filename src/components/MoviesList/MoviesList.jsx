@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Proptypes from 'prop-types';
-import MovieItem from '../MovieItem/MovieItem';
+import MovieListItem from '../MovieListItem/MovieListItem';
 
 export class MoviesList extends Component {
 	static propTypes = {
@@ -20,7 +20,7 @@ export class MoviesList extends Component {
 				<div className="movies-list-container">
 					{
 						moviesOnPage.map((movie, i) => (
-							<MovieItem
+							<MovieListItem
 								key={movie.id}
 								movie={movie}
 								movieIndex={i}

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { PAGE_WITH_MOVIES } from '../../constants/routes';
 
 export class Header extends Component {
 	render() {
@@ -15,12 +13,9 @@ export class Header extends Component {
 						width="32"
 					/>
 					<div className="header-logo-text-wrapper">
-						<Link
-							className="header-logo-text"
-							to={`${PAGE_WITH_MOVIES}/1`}
-						>
+						<span className="header-logo-text">
 							Movies
-						</Link>
+						</span>
 					</div>
 					<div className="my-account-dropdown">
 						<span>My Account</span>

@@ -6,20 +6,21 @@ body {
     margin: 0px;
     background-color: #F2F3F5;
     font-size: 16px;
-    font-family: sans-serif;
+    font-family: Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
     height: 64px;
     color: white;
     background-color: #494E59;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-}
-
-section {
-    position: relative;
 }
 
 .header-wrapper {
@@ -60,7 +61,7 @@ section {
 }
 
 .movies-container {
-    margin: 50px auto 0;
+    margin: 114px auto 0;
     min-width: 205px;
 }
 
@@ -143,7 +144,7 @@ section {
 .movie-image-loading {
     height: 100%;
     width: 100%;
-    z-index: 999;
+    z-index: 99;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -200,18 +201,86 @@ a {
     color: rgb(110, 0, 170) !important;
 }
 
-.movie-modal {
+.modal-movie {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
-    background-color: black;
+    padding: 64px 0 0 0;
+    z-index: 1000;
+    background-color: rgb(0, 0, 0);
 }
 
-.movie-modal>img {
-    filter: blur(6px);
+.modal-movie .modal-background-img {
+    filter: blur(20px);
+}
+
+.modal-content {
+    overflow: auto;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.modal-next-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.movie-info {
+    display: flex;
+    flex-flow: row nowrap;
+    font-weight: bold;
+}
+
+.modal-movie-img {
+    margin: 0 30px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.modal-info-text {
+    width: 450px;
+    line-height: 1.2em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.modal-info-text p {
+    margin: 0px;
+}
+
+#modal-title {
+    margin: 10px 0 15px 0;
+}
+
+#modal-score {
+    margin: 0 10px 0 0;
+    padding: 0 10px 0 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#modal-info-text-second {
+    margin: 25px 0 0 0;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 500;
 }
 
 @media screen and (max-width: 1050px) {
@@ -222,8 +291,7 @@ a {
 }
 
 @media screen and (max-width: 850px) {
-    .movie-list,
-    .header-wrapper {
+    .movie-list {
         max-width: 410px;
     }
 }

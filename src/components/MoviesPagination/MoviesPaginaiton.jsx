@@ -5,7 +5,7 @@ import {
 	PAGE_WITH_MOVIES
 } from '../../constants/routes';
 import {
-	NUM_OF_NEAR_PAGES_ON_ONE_SIDE,
+	MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE,
 } from '../../constants/constants';
 
 export class MoviesPaginaiton extends Component {
@@ -57,8 +57,8 @@ export class MoviesPaginaiton extends Component {
 
 	getNearPageWithNumber(currentPage, numOfPages) {
 		let res = [];
-		for (let i = currentPage - NUM_OF_NEAR_PAGES_ON_ONE_SIDE;
-			i <= currentPage + NUM_OF_NEAR_PAGES_ON_ONE_SIDE;
+		for (let i = currentPage - MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE;
+			i <= currentPage + MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE;
 			i++
 		) {
 			if (!this.isValidPage(i)) continue;
@@ -77,7 +77,7 @@ export class MoviesPaginaiton extends Component {
 			}
 		}
 		if (currentPage === 1
-			&& numOfPages > NUM_OF_NEAR_PAGES_ON_ONE_SIDE + 1
+			&& numOfPages > MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE + 1
 		) {
 			res.push(<span>...</span>);
 		}
