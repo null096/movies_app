@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import MovieListItem from '../MovieListItem/MovieListItem';
 
@@ -20,10 +21,15 @@ export class MoviesList extends Component {
 				<div className="movies-list-container">
 					{
 						moviesOnPage.map((movie, i) => (
-							<MovieListItem
+							<Route
 								key={movie.id}
-								movie={movie}
-								movieIndex={i}
+								render={(props) =>
+									<MovieListItem
+										{...props}
+										movie={movie}
+										movieIndex={i}
+									/>
+								}
 							/>
 						))
 					}

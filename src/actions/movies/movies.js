@@ -14,7 +14,7 @@ export const uploadMoviesForPage = (page) => (dispatch) => {
 	axios.get(URL_TO_MOVIES_NOW_PLAYING, {
 		params: {
 			api_key: API_KEY,
-			page
+			page,
 		},
 	})
 		.then((res) => {
@@ -33,10 +33,10 @@ export const uploadMoviesForPage = (page) => (dispatch) => {
 
 export const numOfMoviesPageUpdated = (numOfPages) => ({
 	type: NUM_OF_MOVIES_PAGE_UPDATED,
-	numOfPages
+	numOfPages,
 });
 
 export const moviesOnPageUpdated = (moviesOnPage) => ({
 	type: MOVIES_ON_PAGE_UPDATED,
-	moviesOnPage
+	moviesOnPage,
 });
