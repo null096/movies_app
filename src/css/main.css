@@ -6,7 +6,7 @@ body {
     margin: 0px;
     background-color: #F2F3F5;
     font-size: 16px;
-    font-family: Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -41,7 +41,7 @@ header {
 }
 
 .header-logo-text {
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .my-account-dropdown {
@@ -58,6 +58,7 @@ header {
 
 .my-account-dropdown>span {
     padding: 5px 10px;
+    font-weight: 300;
 }
 
 .movies-container {
@@ -212,13 +213,12 @@ li {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 64px 0 0 0;
     z-index: 1000;
     background-color: rgb(0, 0, 0);
 }
 
 .modal-movie .modal-background-img {
-    filter: blur(20px);
+    filter: blur(25px);
 }
 
 .modal-content {
@@ -233,7 +233,19 @@ li {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgba(128, 128, 128, 0.4);
+}
+
+.modal-close-btn,
+.modal-next-btn {
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: 200;
+    font-size: 18px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }
 
 .modal-close-btn {
@@ -242,10 +254,18 @@ li {
     left: 0;
 }
 
+.modal-close-btn > img {
+    margin: 15px;
+}
+
 .modal-next-btn {
     position: absolute;
     top: 64px;
     right: 0;
+}
+
+.modal-next-btn > img {
+    margin: 15px;
 }
 
 .movie-info {
@@ -256,7 +276,7 @@ li {
 }
 
 .modal-movie-img {
-    margin: 0 30px 0 0;
+    margin: 0 35px 0 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
@@ -282,12 +302,17 @@ li {
     border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+#modal-info-text-first {
+    font-weight: 300;
+}
+
 #modal-info-text-second {
     margin: 20px 0 10px 0;
     padding: 14px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     font-weight: 500;
+    line-height: 1.3em;
 }
 
 @media screen and (max-width: 1050px) {
