@@ -97,7 +97,7 @@ header {
     filter: blur(1px);
 }
 
-.movie-item:hover>div:not(.is-background-gray) {
+.movie-item:hover>div:not(.is-background-purple) {
     background-color: rgb(50, 50, 50, 0.65);
 }
 
@@ -105,7 +105,7 @@ header {
     display: block;
 }
 
-.is-background-gray {
+.is-background-purple {
     background-color: rgba(50, 0, 100, 0.65);
 }
 
@@ -174,8 +174,13 @@ li {
     margin-right: -1px;
 }
 
-.pagination span,
-a {
+.pagination a {
+    text-decoration: none;
+    color: rgb(173, 173, 173);
+    font-weight: bold;
+}
+
+.pagination span {
     text-decoration: none;
     color: rgb(173, 173, 173);
     font-weight: bold;
