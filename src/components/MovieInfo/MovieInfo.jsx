@@ -22,14 +22,6 @@ export class MovieInfo extends Component {
 		numOfMoviesOnPage: Proptypes.number.isRequired,
 	};
 
-	/* 	componentDidMount() {
-			document.body.style.overflow = 'hidden';
-		}
-	
-		componentWillUnmount() {
-			document.body.style.overflow = 'visible';
-		} */
-
 	getNextMovieIndex() {
 		const {
 			numOfMoviesOnPage,
