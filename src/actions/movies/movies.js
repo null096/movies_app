@@ -1,6 +1,8 @@
 import {
 	MOVIES_ON_PAGE_UPDATED,
 	NUM_OF_MOVIES_PAGE_UPDATED,
+	MOVIES_LOADING_START,
+	MOVIES_LOADING_END,
 } from '../actionNames';
 import {
 	API_KEY,
@@ -11,6 +13,7 @@ import {
 import axios from 'axios';
 
 export const uploadMoviesForPage = (page) => (dispatch) => {
+	dispatch(moviesLoadingStart());
 	axios.get(URL_TO_MOVIES_NOW_PLAYING, {
 		params: {
 			api_key: API_KEY,
@@ -28,7 +31,8 @@ export const uploadMoviesForPage = (page) => (dispatch) => {
 		})
 		.catch((e) => {
 			console.error(e);
-		});
+		})
+		.finally(() => dispatch(moviesLoadingEnd()));
 };
 
 export const numOfMoviesPageUpdated = (numOfPages) => ({
@@ -39,4 +43,12 @@ export const numOfMoviesPageUpdated = (numOfPages) => ({
 export const moviesOnPageUpdated = (moviesOnPage) => ({
 	type: MOVIES_ON_PAGE_UPDATED,
 	moviesOnPage,
+});
+
+export const moviesLoadingStart = () => ({
+	type: MOVIES_LOADING_START,
+});
+
+export const moviesLoadingEnd = () => ({
+	type: MOVIES_LOADING_END,
 });

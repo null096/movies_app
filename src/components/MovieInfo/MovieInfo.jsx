@@ -13,6 +13,7 @@ import Header from '../Header/Header';
 import BackToListLink from './BackToListLink/BackToListLink';
 import NextMovieLink from './NextMovieLink/NextMovieLink';
 import MovieDescription from './MovieDescription/MovieDescription';
+import Loading from '../Loading/Loading';
 
 export class MovieInfo extends Component {
 	static propTypes = {
@@ -20,6 +21,7 @@ export class MovieInfo extends Component {
 		movieIndex: Proptypes.number.isRequired,
 		movie: Proptypes.object.isRequired,
 		numOfMoviesOnPage: Proptypes.number.isRequired,
+		isMoviesOnPageUploaded: Proptypes.bool.isRequired,
 	};
 
 	getNextMovieIndex() {
@@ -45,8 +47,11 @@ export class MovieInfo extends Component {
 		const {
 			isMovieExists,
 			movie,
-			currentPage
+			currentPage,
+			isMoviesOnPageUploaded
 		} = this.props;
+
+		if (!isMoviesOnPageUploaded) return <Loading/>;
 
 		if (!isMovieExists) return (
 			<Redirect
@@ -96,6 +101,7 @@ export class MovieInfo extends Component {
 const mapStateToProps = (state, props) => {
 	const {
 		moviesOnPage,
+		isMoviesOnPageUploaded,
 	} = state.movies;
 	const movieIndex = parseInt(props.match.params.movieIndex, 10);
 	const numOfMoviesOnPage = moviesOnPage.length;
@@ -107,6 +113,7 @@ const mapStateToProps = (state, props) => {
 		movieIndex,
 		movie,
 		numOfMoviesOnPage,
+		isMoviesOnPageUploaded,
 	};
 };
 
