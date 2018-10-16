@@ -3,7 +3,6 @@ import MoviesList from '../MoviesList/MoviesList';
 import MoviesPaginaiton from '../MoviesPagination/MoviesPaginaiton';
 import Header from '../Header/Header';
 import Proptypes from 'prop-types';
-import Loading from '../Loading/Loading';
 
 export class Movies extends Component {
     static propTypes = {
@@ -17,10 +16,7 @@ export class Movies extends Component {
             moviesOnPage,
             numOfPages,
             currentPage,
-            isMoviesOnPageUploaded
         } = this.props;
-
-        if (!isMoviesOnPageUploaded) return <Loading />
 
         return (
             <React.Fragment>

@@ -14,7 +14,6 @@ export class MoviesSwitch extends Component {
 		numOfPages: Proptypes.number.isRequired,
 		moviesOnPage: Proptypes.array.isRequired,
 		uploadMoviesForPage: Proptypes.func.isRequired,
-		isMoviesOnPageUploaded: Proptypes.bool.isRequired,
 	};
 
 	componentDidMount() {
@@ -42,7 +41,6 @@ export class MoviesSwitch extends Component {
 		const {
 			numOfPages,
 			moviesOnPage,
-			isMoviesOnPageUploaded,
 			match,
 		} = this.props;
 		const currentPage = parseInt(match.params.page, 10);
@@ -66,7 +64,6 @@ export class MoviesSwitch extends Component {
 							currentPage={currentPage}
 							numOfPages={numOfPages}
 							moviesOnPage={moviesOnPage}
-							isMoviesOnPageUploaded={isMoviesOnPageUploaded}
 						/>
 					}
 				/>
@@ -78,7 +75,6 @@ export class MoviesSwitch extends Component {
 const mapStateToProps = (state) => ({
 	moviesOnPage: state.movies.moviesOnPage,
 	numOfPages: state.movies.numOfPages,
-	isMoviesOnPageUploaded: state.movies.isMoviesOnPageUploaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
