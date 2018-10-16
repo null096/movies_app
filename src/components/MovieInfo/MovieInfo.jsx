@@ -61,19 +61,23 @@ export class MovieInfo extends Component {
 		return (
 			<React.Fragment>
 				<Header />
-				<div className="modal-movie">
-					<BackToListLink
-						to={`${PAGE_WITH_MOVIES}/${currentPage}`}
-					/>
-					<NextMovieLink
-						to={this.getLinkToNextMovie()}
-					/>
-					<div className="modal-content">
-						<MovieDescription
-							movie={movie}
-							movieImgUrl={imgSrcW185}
-							releaseDateStr={releaseDateStr}
+				<div className="modal-window-wrapper">
+					<div className="modal-buttons">
+						<BackToListLink
+							to={`${PAGE_WITH_MOVIES}/${currentPage}`}
 						/>
+						<NextMovieLink
+							to={this.getLinkToNextMovie()}
+						/>
+					</div>
+					<div className="modal-movie">
+						<div className="modal-content">
+							<MovieDescription
+								movie={movie}
+								movieImgUrl={imgSrcW185}
+								releaseDateStr={releaseDateStr}
+							/>
+						</div>
 					</div>
 				</div>
 				<div className="modal-background-img-wrapper">
@@ -84,7 +88,7 @@ export class MovieInfo extends Component {
 						width="100%"
 					/>
 				</div>
-			</React.Fragment >
+			</React.Fragment>
 		);
 	}
 }

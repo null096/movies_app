@@ -8,7 +8,7 @@ function NextMovieLink({ to }) {
 			className="modal-next-btn"
 			to={to}
 		>
-			<span>Next Movie</span>
+			<span>Next<span> Movie</span></span>
 			<img
 				src="/img/rightArrow.png"
 				width="32"

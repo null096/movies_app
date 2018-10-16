@@ -14,7 +14,7 @@ function BackToListLink({ to }) {
 				heigth="32"
 				alt=""
 			/>
-			<span>Back to list</span>
+			<span>Back<span> to list</span></span>
 		</Link>
 	);
 }

@@ -16,8 +16,15 @@ function MovieDescription({ movie, movieImgUrl, releaseDateStr }) {
 					{movie.title}
 				</h2>
 				<p id="modal-info-text-first">
-					<span id="modal-score">Score: {movie.vote_average}</span>
-					<span>Release Date: {releaseDateStr}</span>
+					<span className="with-text-seperator">
+						Score: {movie.vote_average}
+					</span>
+					<span className="with-text-seperator">
+						Rating: {movie.adult ? 'R' : 'PG'}
+					</span>
+					<span >
+						Release Date: {releaseDateStr}
+					</span>
 				</p>
 				<p id="modal-info-text-second">
 					{movie.overview}
