@@ -83,14 +83,14 @@ export class MovieInfo extends Component {
 							releaseDateStr={releaseDateStr}
 						/>
 					</div>
-					<div className="modal-background-img-wrapper">
-						<img
-							className="modal-background-img"
-							src={backgroundImgSrc}
-							alt="background-img"
-							width="100%"
-						/>
-					</div>
+				</div>
+				<div className="modal-background-img-wrapper">
+					<img
+						className="modal-background-img"
+						src={backgroundImgSrc}
+						alt="background-img"
+						width="100%"
+					/>
 				</div>
 			</React.Fragment >
 		);
