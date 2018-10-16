@@ -2,25 +2,32 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     margin: 0px;
     background-color: #F2F3F5;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+}
+
+#root {
+    height: 100%;
+    overflow: auto;
 }
 
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1100;
     height: 64px;
     color: white;
     background-color: #494E59;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    align-items: center;
 }
 
 .header-wrapper {
@@ -38,9 +45,8 @@ header {
 
 .header-logo-text-wrapper {
     flex: 1 0 auto;
-}
-
-.header-logo-text {
+    color: white;
+    text-decoration: none;
     font-weight: 400;
 }
 
@@ -62,7 +68,7 @@ header {
 }
 
 .movies-container {
-    margin: 114px auto 0;
+    margin: 40px auto 0;
     min-width: 205px;
 }
 
@@ -208,37 +214,37 @@ li {
 }
 
 .modal-movie {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: rgb(0, 0, 0);
-}
-
-.modal-movie .modal-background-img {
-    filter: blur(25px);
-}
-
-.modal-content {
-    overflow: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: #ffffff;
+    min-height: calc(100% - 64px);
     display: flex;
-    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     background-color: rgba(128, 128, 128, 0.4);
+    color: #ffffff;
+}
+
+.modal-content {
+    margin: 10px;
+    padding: 0 0 64px 0;
+}
+
+.modal-background-img-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    background-color: black;
+}
+
+.modal-background-img-wrapper .modal-background-img {
+    filter: blur(10px);
 }
 
 .modal-close-btn,
 .modal-next-btn {
     padding: 5px;
+    margin: 15px;
     text-decoration: none;
     color: white;
     font-weight: 200;
@@ -254,7 +260,7 @@ li {
     left: 0;
 }
 
-.modal-close-btn > img {
+.modal-close-btn>img {
     margin: 15px;
 }
 
@@ -264,15 +270,14 @@ li {
     right: 0;
 }
 
-.modal-next-btn > img {
+.modal-next-btn>img {
     margin: 15px;
 }
 
-.movie-info {
+.modal-movie-info {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    font-weight: bold;
 }
 
 .modal-movie-img {

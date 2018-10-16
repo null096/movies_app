@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 
 function MovieDescription({ movie, movieImgUrl, releaseDateStr }) {
 	return (
-		<div className="movie-info">
+		<div className="modal-movie-info">
 			<img
 				className="modal-movie-img"
 				src={movieImgUrl}

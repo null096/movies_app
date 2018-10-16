@@ -22,6 +22,14 @@ export class MovieInfo extends Component {
 		numOfMoviesOnPage: Proptypes.number.isRequired,
 	};
 
+	/* 	componentDidMount() {
+			document.body.style.overflow = 'hidden';
+		}
+	
+		componentWillUnmount() {
+			document.body.style.overflow = 'visible';
+		} */
+
 	getNextMovieIndex() {
 		const {
 			numOfMoviesOnPage,
@@ -62,23 +70,25 @@ export class MovieInfo extends Component {
 			<React.Fragment>
 				<Header />
 				<div className="modal-movie">
-					<img
-						className="modal-background-img"
-						src={backgroundImgSrc}
-						alt="background-img"
-						width="100%"
+					<BackToListLink
+						to={`${PAGE_WITH_MOVIES}/${currentPage}`}
+					/>
+					<NextMovieLink
+						to={this.getLinkToNextMovie()}
 					/>
 					<div className="modal-content">
-						<BackToListLink
-							to={`${PAGE_WITH_MOVIES}/${currentPage}`}
-						/>
-						<NextMovieLink
-							to={this.getLinkToNextMovie()}
-						/>
 						<MovieDescription
 							movie={movie}
 							movieImgUrl={imgSrcW185}
 							releaseDateStr={releaseDateStr}
+						/>
+					</div>
+					<div className="modal-background-img-wrapper">
+						<img
+							className="modal-background-img"
+							src={backgroundImgSrc}
+							alt="background-img"
+							width="100%"
 						/>
 					</div>
 				</div>
