@@ -163,7 +163,7 @@ header {
 }
 
 .pagination {
-    margin: 25px 0px 50px;
+    margin: 25px 0 50px;
     display: flex;
     justify-content: center;
 }
@@ -276,28 +276,33 @@ li {
 .modal-movie-info {
     display: grid;
     grid-template-columns: 220px 500px;
-    grid-template-rows: 235px;
+    grid-template-rows: repeat(5, max-content);
+    word-wrap: break-word;
+}
+
+.modal-movie-img-wrapper {
+    grid-row: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-movie-img {
+    height: 235px;
+    width: 185px;
     margin: 0 35px 0 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
-.modal-info-text {
-    max-width: 500px;
-    line-height: 1.2em;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+.modal-movie-info>* {
+    margin: 0;
+    padding: 0;
 }
 
-.modal-info-text p {
-    margin: 0px;
-}
-
-#modal-title {
-    margin: 15px 0 15px 0;
+.modal-title {
+    grid-column: 2 / 3;
+    grid-row: 2/3;
+    margin: 10px 0;
 }
 
 .with-text-seperator {
@@ -306,11 +311,17 @@ li {
     border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-#modal-info-text-first {
+.modal-info-text-first {
+    grid-column: 2 / 3;
+    grid-row: 3/4;
     font-weight: 500;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }
 
-#modal-info-text-second {
+.modal-info-text-second {
+    grid-row: 4/5;
     margin: 20px 0 10px 0;
     padding: 14px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -348,6 +359,39 @@ li {
     }
     .modal-movie-img {
         border-radius: 10px;
+        height: 221px;
+        width: 155px;
+    }
+    .modal-movie-info {
+        grid-template-columns: 165px auto;
+        grid-template-rows: repeat(3, auto);
+    }
+    .modal-movie-img {
+        margin: 0 10px 0 0;
+    }
+    .modal-movie-img-wrapper {
+        grid-row: 1 / 2;
+    }
+    .with-text-seperator {
+        margin: 0;
+        padding: 0;
+        border-right: 0;
+    }
+    .modal-title {
+        grid-column: 1/-1;
+        grid-row: 2/3;
+        margin: 15px 0 10px;
+    }
+    .modal-info-text-first {
+        grid-row: 1/2;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        align-items: normal;
+    }
+    .modal-info-text-second {
+        grid-row: 3/4;
+        grid-column: 1/-1;
+        margin: 5px 0 10px;
     }
 }
 
@@ -374,6 +418,6 @@ li {
     }
     .modal-close-btn>img,
     .modal-next-btn>img {
-        margin: 3px 5px;
+        margin: 3px 10px;
     }
 }

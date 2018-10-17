@@ -4,32 +4,30 @@ import Proptypes from 'prop-types';
 function MovieDescription({ movie, movieImgUrl, releaseDateStr }) {
 	return (
 		<div className="modal-movie-info">
-			<img
-				className="modal-movie-img"
-				src={movieImgUrl}
-				alt="Movie logo"
-				height="235"
-				width="185"
-			/>
-			<div className="modal-info-text">
-				<h2 id="modal-title">
-					{movie.title}
-				</h2>
-				<p id="modal-info-text-first">
-					<span className="with-text-seperator">
-						Score: {movie.vote_average}
-					</span>
-					<span className="with-text-seperator">
-						Rating: {movie.adult ? 'R' : 'PG'}
-					</span>
-					<span >
-						Release Date: {releaseDateStr}
-					</span>
-				</p>
-				<p id="modal-info-text-second">
-					{movie.overview}
-				</p>
+			<div className="modal-movie-img-wrapper">
+				<img
+					className="modal-movie-img"
+					src={movieImgUrl}
+					alt="Movie logo"
+				/>
 			</div>
+			<h2 className="modal-title">
+				{movie.title}
+			</h2>
+			<p className="modal-info-text-first">
+				<span className="with-text-seperator">
+					Score: {movie.vote_average}
+				</span>
+				<span className="with-text-seperator">
+					Rating: {movie.adult ? 'R' : 'PG'}
+				</span>
+				<span>
+					Release Date: {releaseDateStr}
+				</span>
+			</p>
+			<p className="modal-info-text-second">
+				{movie.overview}
+			</p>
 		</div>
 	);
 }
