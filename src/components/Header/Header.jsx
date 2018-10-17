@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { PAGE_WITH_MOVIES } from '../../constants/routes';
+import {
+	PAGE_WITH_MOVIES,
+	PAGE_WITH_FAVORITES
+} from '../../constants/routes';
 
 export class Header extends Component {
 	render() {
@@ -22,14 +25,21 @@ export class Header extends Component {
 							Movies
 						</Link>
 					</div>
-					<div className="my-account-dropdown">
-						<span>My Account</span>
-						<img
-							src="/img/arrowDown.png"
-							alt="dropdown"
-							height="32"
-							width="32"
-						/>
+					<div className="my-account-dropdown-wrapper">
+						<div className="my-account-dropdown">
+							<span>My Account</span>
+							<img
+								src="/img/arrowDown.png"
+								alt="dropdown"
+								height="32"
+								width="32"
+							/>
+						</div>
+						<nav className="dropdown-menu">
+							<Link to={PAGE_WITH_FAVORITES}>
+								Favorites
+							</Link>
+						</nav>
 					</div>
 				</div>
 			</header>
