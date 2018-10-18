@@ -1,4 +1,5 @@
 export const URL_TO_MOVIES_NOW_PLAYING = 'http://api.themoviedb.org/3/movie/now_playing';
+export const URL_TO_MOVIE_INFO = 'https://api.themoviedb.org/3/movie';
 export const URL_TO_MOVIE_IMAGE_W185 = 'http://image.tmdb.org/t/p/w185';
 export const URL_TO_MOVIE_IMAGE_W780 = 'http://image.tmdb.org/t/p/w780';
 export const URL_TO_MOVIE_IMAGE_ORIGINAL = 'http://image.tmdb.org/t/p/original';

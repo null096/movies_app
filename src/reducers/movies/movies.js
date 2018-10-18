@@ -13,6 +13,7 @@ const initialState = {
 	moviesOnPage: [],
 	numOfPages: 0,
 	favoriteMovies: new Set(),
+	isFavoriteMoviesLoadedFromStorage: false,
 };
 
 function movies(state = initialState, action) {
@@ -38,6 +39,11 @@ function movies(state = initialState, action) {
 				isMoviesOnPageUploaded: true,
 			};
 		case SET_UP_FAVORITE_LIST:
+			return {
+				...state,
+				favoriteMovies: action.favoriteMovies,
+				isFavoriteMoviesLoadedFromStorage: true,
+			}
 		case ADD_MOVIE_TO_FAVORITE:
 		case REMOVE_MOVIE_FROM_FAVORITE:
 			return {
