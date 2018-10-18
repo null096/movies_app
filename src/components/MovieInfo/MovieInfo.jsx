@@ -9,11 +9,15 @@ import {
 import {
 	PAGE_WITH_MOVIES
 } from '../../constants/routes';
+import {
+	addMovieToFavorites,
+	removeMovieFromFavorites,
+} from '../../actions/movies/movies';
 import Header from '../Header/Header';
-import BackToListLink from './BackToListLink/BackToListLink';
-import NextMovieLink from './NextMovieLink/NextMovieLink';
-import MovieDescription from './MovieDescription/MovieDescription';
+import BackgroundImage from './BackgroundImage/BackgroundImage';
+import FavoriteButton from './FavoriteButton/FavoriteButton';
 import Loading from '../Loading/Loading';
+import Content from './Content/Content';
 
 export class MovieInfo extends Component {
 	static propTypes = {
@@ -22,6 +26,7 @@ export class MovieInfo extends Component {
 		movie: Proptypes.object.isRequired,
 		numOfMoviesOnPage: Proptypes.number.isRequired,
 		isMoviesOnPageUploaded: Proptypes.bool.isRequired,
+		isFavorite: Proptypes.bool.isRequired,
 	};
 
 	getNextMovieIndex() {
@@ -43,15 +48,30 @@ export class MovieInfo extends Component {
 		return `${PAGE_WITH_MOVIES}/${currentPage}/${this.getNextMovieIndex()}`;
 	};
 
+	onFavoriteButtonClick = (movieId) => {
+		const {
+			addMovieToFavorites,
+			removeMovieFromFavorites,
+			isFavorite,
+		} = this.props;
+
+		if (isFavorite) {
+			removeMovieFromFavorites(movieId);
+		} else {
+			addMovieToFavorites(movieId);
+		}
+	}
+
 	render() {
 		const {
 			isMovieExists,
 			movie,
 			currentPage,
-			isMoviesOnPageUploaded
+			isMoviesOnPageUploaded,
+			isFavorite,
 		} = this.props;
 
-		if (!isMoviesOnPageUploaded) return <Loading/>;
+		if (!isMoviesOnPageUploaded) return <Loading />;
 
 		if (!isMovieExists) return (
 			<Redirect
@@ -60,39 +80,27 @@ export class MovieInfo extends Component {
 		);
 
 		const backgroundImgSrc = `${URL_TO_MOVIE_IMAGE_ORIGINAL}${movie.poster_path}`;
-		const imgSrcW185 = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
-		const releaseDateStr = new Date(movie.release_date).toLocaleDateString();
+		const descriptionImg = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
+		const backToListLink = `${PAGE_WITH_MOVIES}/${currentPage}`;
 
 		return (
 			<React.Fragment>
 				<Header />
-				<div className="modal-window-wrapper">
-					<div className="modal-buttons">
-						<BackToListLink
-							to={`${PAGE_WITH_MOVIES}/${currentPage}`}
-						/>
-						<NextMovieLink
-							to={this.getLinkToNextMovie()}
-						/>
-					</div>
-					<div className="modal-movie">
-						<div className="modal-content">
-							<MovieDescription
-								movie={movie}
-								movieImgUrl={imgSrcW185}
-								releaseDateStr={releaseDateStr}
-							/>
-						</div>
-					</div>
-				</div>
-				<div className="modal-background-img-wrapper">
-					<img
-						className="modal-background-img"
-						src={backgroundImgSrc}
-						alt="background-img"
-						width="100%"
-					/>
-				</div>
+				<Content
+					movie={movie}
+					descriptionImg={descriptionImg}
+					backToListLink={backToListLink}
+					nextMovieLink={this.getLinkToNextMovie()}
+				/>
+				<BackgroundImage
+					backgroundImgSrc={backgroundImgSrc}
+				/>
+				<FavoriteButton
+					onFavoriteButtonClick={() =>
+						this.onFavoriteButtonClick(movie.id)
+					}
+					isFavorite={isFavorite}
+				/>
 			</React.Fragment>
 		);
 	}
@@ -102,11 +110,16 @@ const mapStateToProps = (state, props) => {
 	const {
 		moviesOnPage,
 		isMoviesOnPageUploaded,
+		favoriteMovies
 	} = state.movies;
 	const movieIndex = parseInt(props.match.params.movieIndex, 10);
 	const numOfMoviesOnPage = moviesOnPage.length;
 	const movie = moviesOnPage[movieIndex] || {};
 	const isMovieExists = !!moviesOnPage[movieIndex];
+	const isFavorite =
+		isMovieExists
+			? favoriteMovies.has(movie.id)
+			: false;
 
 	return {
 		isMovieExists,
@@ -114,9 +127,18 @@ const mapStateToProps = (state, props) => {
 		movie,
 		numOfMoviesOnPage,
 		isMoviesOnPageUploaded,
+		isFavorite,
 	};
 };
 
+const mapDispatchToProps = (dispatch) => ({
+	addMovieToFavorites:
+		(movieId) => dispatch(addMovieToFavorites(movieId)),
+	removeMovieFromFavorites:
+		(movieId) => dispatch(removeMovieFromFavorites(movieId)),
+});
+
 export default connect(
 	mapStateToProps,
+	mapDispatchToProps
 )(MovieInfo);

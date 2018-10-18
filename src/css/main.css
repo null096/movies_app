@@ -253,7 +253,7 @@ li {
     display: flex;
     justify-content: space-between;
     flex-shrink: 0;
-    margin: 0 0 30px;
+    margin: 0 0 20px;
 }
 
 .modal-content {
@@ -355,6 +355,30 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.add-to-favorites-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    height: 50px;
+    width: 50px;
+    font-size: 24px;
+    border-radius: 50%;
+    border-color: gray;
+    background-color: rgb(179, 0, 179);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-to-favorites-container:hover:not(.is-favorite-movie) {
+    background-color: magenta;
+}
+
+.is-favorite-movie {
+    background-color: magenta;
 }
 
 @media screen and (max-width: 1080px) {
