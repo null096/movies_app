@@ -86,18 +86,47 @@ export class FavoriteMovies extends Component {
 		})
 	);
 
-	onUnfavorite = (movieId) => {
+	onUnfavorite = (movieId, index) => {
 		const {
 			removeMovieFromFavorites
 		} = this.props;
+		const {
+			movies
+		} = this.state;
+
+		movies.splice(index, 1);
 
 		removeMovieFromFavorites(movieId);
+		this.setState({ movies });
+	}
+
+	getMoviesListForRender() {
+		const {
+			movies,
+		} = this.state;
+
+		return (
+			<ul className="favorite-movies-list">
+				{
+					movies.map((movie, index) =>
+						<li key={movie.id}>
+							<FavoriteMovieInfo
+								movie={movie}
+								onUnfavorite={() =>
+									this.onUnfavorite(movie.id, index)
+								}
+							/>
+						</li>
+					)
+				}
+			</ul>
+		);
 	}
 
 	render() {
 		const {
 			isFavoriteMoviesLoaded,
-			movies,
+			movies
 		} = this.state;
 
 		if (!isFavoriteMoviesLoaded) return <Loading />
@@ -107,24 +136,18 @@ export class FavoriteMovies extends Component {
 				<Header />
 				<div className="favorite-movies-container">
 					<span className="favorite-movies-title">
-						Latest Releases
+						My favorite
 					</span>
-					<ul className="favorite-movies-list">
-						{
-							movies.map(movie =>
-								<li key={movie.id}>
-									<FavoriteMovieInfo
-										movie={movie}
-										onUnfavorite={() =>
-											this.onUnfavorite(movie.id)
-										}
-									/>
-								</li>
-							)
-						}
-					</ul>
+					{
+						movies.length
+							? this.getMoviesListForRender()
+							:
+							<p className="favorite-empty-list">
+								List is empty
+							</p>
+					}
 				</div>
-			</React.Fragment>
+			</React.Fragment >
 		);
 	}
 }
