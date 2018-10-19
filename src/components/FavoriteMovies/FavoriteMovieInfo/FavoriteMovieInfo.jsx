@@ -1,17 +1,17 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import {
-	URL_TO_MOVIE_IMAGE_W185,
+	URL_TO_MOVIE_IMAGE_W154,
 } from '../../../constants/constants';
 
 export default function FavoriteMovieInfo({ movie, onUnfavorite }) {
 	return (
 		<div className="favorite-movie-info-container">
 			<img
-				src={`${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`}
+				src={`${URL_TO_MOVIE_IMAGE_W154}${movie.poster_path}`}
 				alt="Movie logo"
-				height="278"
-				width="185"
+				height="231"
+				width="154"
 			/>
 			<div className="favorite-movie-info">
 				<div className="favorite-movie-title-wrapper">

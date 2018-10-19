@@ -207,7 +207,6 @@ header {
     display: inline-block;
     padding: 10px 15px;
     border: 1px solid gray;
-    margin-right: -1px;
 }
 
 .pagination a,
@@ -477,8 +476,8 @@ header {
     }
     .modal-movie-img {
         border-radius: 10px;
-        height: 221px;
-        width: 155px;
+        height: 231px;
+        width: 154px;
     }
     .modal-movie-info {
         grid-template-columns: 165px auto;
