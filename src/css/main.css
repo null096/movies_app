@@ -358,30 +358,6 @@ header {
     align-items: center;
 }
 
-.add-to-favorites-container {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    height: 50px;
-    width: 50px;
-    font-size: 24px;
-    border-radius: 50%;
-    border-color: gray;
-    background-color: rgb(179, 0, 179);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.add-to-favorites-container:hover:not(.is-favorite-movie) {
-    background-color: magenta;
-}
-
-.is-favorite-movie {
-    background-color: magenta;
-}
-
 .favorite-movies-container {
     max-width: 1025px;
     margin: 40px auto;

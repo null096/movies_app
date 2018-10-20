@@ -15,7 +15,6 @@ import {
 } from '../../actions/movies/movies';
 import Header from '../Header/Header';
 import BackgroundImage from './BackgroundImage/BackgroundImage';
-import FavoriteButton from './FavoriteButton/FavoriteButton';
 import Loading from '../Loading/Loading';
 import Content from './Content/Content';
 
