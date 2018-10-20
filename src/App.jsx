@@ -10,7 +10,7 @@ import {
 } from './constants/routes';
 import {
 	setUpFavoriteList,
-	favoriteListUpdatedInAnotherTab,
+	favoriteMoviesUpdatedInAnotherTab,
 } from './actions/movies/movies';
 import Proptypes from 'prop-types';
 
@@ -67,8 +67,8 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
 	setUpFavoriteList: () => dispatch(setUpFavoriteList()),
-	favoriteListUpdatedInAnotherTab: (newFavoriteList) =>
-		dispatch(favoriteListUpdatedInAnotherTab(newFavoriteList)),
+	favoriteListUpdatedInAnotherTab: (favoriteMovies) =>
+		dispatch(favoriteMoviesUpdatedInAnotherTab(favoriteMovies)),
 });
 
 export default connect(

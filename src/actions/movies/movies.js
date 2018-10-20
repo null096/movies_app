@@ -66,7 +66,7 @@ export const setUpFavoriteList = () => ({
 	favoriteMovies: getFavoriteMoviesFromStorage(),
 });
 
-export const favoriteListUpdatedInAnotherTab = (favoriteMovies) => ({
+export const favoriteMoviesUpdatedInAnotherTab = (favoriteMovies) => ({
 	type: FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB,
 	favoriteMovies: favoriteMovies || {},
 });
