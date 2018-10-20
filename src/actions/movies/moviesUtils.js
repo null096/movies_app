@@ -1,10 +1,8 @@
 export const putFavoriteMoviesToLocalStorage = (favoriteMovies) => {
-	localStorage.favoriteMovies = JSON.stringify([...favoriteMovies]);
+	localStorage.favoriteMovies = JSON.stringify(favoriteMovies);
 };
 
-export const getSetOfFavoriteMoviesFromStorage = () => {
+export const getFavoriteMoviesFromStorage = () => {
 	const storageFavoriteMovies = localStorage.favoriteMovies;
-	return new Set(
-		JSON.parse(storageFavoriteMovies || '[]')
-	);
-}
+	return JSON.parse(storageFavoriteMovies || '{}');
+};

@@ -48,7 +48,7 @@ export class MovieInfo extends Component {
 		return `${PAGE_WITH_MOVIES}/${currentPage}/${this.getNextMovieIndex()}`;
 	};
 
-	onFavoriteButtonClick = (movieId) => {
+	onFavoriteButtonClick = (movie) => {
 		const {
 			addMovieToFavorites,
 			removeMovieFromFavorites,
@@ -56,9 +56,9 @@ export class MovieInfo extends Component {
 		} = this.props;
 
 		if (isFavorite) {
-			removeMovieFromFavorites(movieId);
+			removeMovieFromFavorites(movie);
 		} else {
-			addMovieToFavorites(movieId);
+			addMovieToFavorites(movie);
 		}
 	}
 
@@ -97,7 +97,7 @@ export class MovieInfo extends Component {
 				/>
 				<FavoriteButton
 					onFavoriteButtonClick={() =>
-						this.onFavoriteButtonClick(movie.id)
+						this.onFavoriteButtonClick(movie)
 					}
 					isFavorite={isFavorite}
 				/>
@@ -118,7 +118,7 @@ const mapStateToProps = (state, props) => {
 	const isMovieExists = !!moviesOnPage[movieIndex];
 	const isFavorite =
 		isMovieExists
-			? favoriteMovies.has(movie.id)
+			? !!favoriteMovies[movie.id]
 			: false;
 
 	return {
@@ -133,9 +133,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
 	addMovieToFavorites:
-		(movieId) => dispatch(addMovieToFavorites(movieId)),
+		(movie) => dispatch(addMovieToFavorites(movie)),
 	removeMovieFromFavorites:
-		(movieId) => dispatch(removeMovieFromFavorites(movieId)),
+		(movie) => dispatch(removeMovieFromFavorites(movie)),
 });
 
 export default connect(

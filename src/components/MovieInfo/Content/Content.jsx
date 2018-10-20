@@ -9,7 +9,6 @@ export default function Content({
     descriptionImg,
     backToListLink,
     nextMovieLink,
-
 }) {
     const releaseDateStr = new Date(movie.release_date).toLocaleDateString();
 

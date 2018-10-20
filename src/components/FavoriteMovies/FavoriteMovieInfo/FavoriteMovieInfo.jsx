@@ -10,8 +10,8 @@ export default function FavoriteMovieInfo({ movie, onUnfavorite }) {
 			<img
 				src={`${URL_TO_MOVIE_IMAGE_W154}${movie.poster_path}`}
 				alt="Movie logo"
-				height="231"
 				width="154"
+				height="231"
 			/>
 			<div className="favorite-movie-info">
 				<div className="favorite-movie-title-wrapper">

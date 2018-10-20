@@ -4,8 +4,9 @@ import {
 	MOVIES_LOADING_START,
 	MOVIES_LOADING_END,
 	SET_UP_FAVORITE_LIST,
-	ADD_MOVIE_TO_FAVORITE,
-	REMOVE_MOVIE_FROM_FAVORITE,
+	MOVIE_ADDED_TO_FAVORITE,
+	MOVIE_REMOVED_FROM_FAVORITE,
+	FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB
 } from '../actionNames';
 import {
 	API_KEY,
@@ -15,7 +16,7 @@ import {
 } from '../../constants/constants';
 import {
 	putFavoriteMoviesToLocalStorage,
-	getSetOfFavoriteMoviesFromStorage
+	getFavoriteMoviesFromStorage
 } from './moviesUtils';
 import axios from 'axios';
 
@@ -62,33 +63,38 @@ export const moviesLoadingEnd = () => ({
 
 export const setUpFavoriteList = () => ({
 	type: SET_UP_FAVORITE_LIST,
-	favoriteMovies: getSetOfFavoriteMoviesFromStorage(),
+	favoriteMovies: getFavoriteMoviesFromStorage(),
 });
 
-export const addMovieToFavorites = (movieId) => (dispatch, getState) => {
+export const favoriteListUpdatedInAnotherTab = (favoriteMovies) => ({
+	type: FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB,
+	favoriteMovies: favoriteMovies || {},
+});
+
+export const addMovieToFavorites = (movie) => (dispatch, getState) => {
 	const {
 		favoriteMovies
 	} = getState().movies;
 
-	favoriteMovies.add(movieId);
+	favoriteMovies[movie.id] = movie;
 	putFavoriteMoviesToLocalStorage(favoriteMovies);
 
 	dispatch({
-		type: ADD_MOVIE_TO_FAVORITE,
+		type: MOVIE_ADDED_TO_FAVORITE,
 		favoriteMovies,
 	});
 };
 
-export const removeMovieFromFavorites = (movieId) => (dispatch, getState) => {
+export const removeMovieFromFavorites = (movie) => (dispatch, getState) => {
 	const {
 		favoriteMovies
 	} = getState().movies;
 
-	favoriteMovies.delete(movieId);
+	delete favoriteMovies[movie.id];
 	putFavoriteMoviesToLocalStorage(favoriteMovies);
 
 	dispatch({
-		type: REMOVE_MOVIE_FROM_FAVORITE,
+		type: MOVIE_REMOVED_FROM_FAVORITE,
 		favoriteMovies,
 	});
 }

@@ -4,15 +4,16 @@ import {
 	MOVIES_LOADING_START,
 	MOVIES_LOADING_END,
 	SET_UP_FAVORITE_LIST,
-	ADD_MOVIE_TO_FAVORITE,
-	REMOVE_MOVIE_FROM_FAVORITE,
+	MOVIE_ADDED_TO_FAVORITE,
+	MOVIE_REMOVED_FROM_FAVORITE,
+	FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB,
 } from '../../actions/actionNames';
 
 const initialState = {
 	isMoviesOnPageUploaded: false,
 	moviesOnPage: [],
 	numOfPages: 0,
-	favoriteMovies: new Set(),
+	favoriteMovies: {},
 	isFavoriteMoviesLoadedFromStorage: false,
 };
 
@@ -43,9 +44,10 @@ function movies(state = initialState, action) {
 				...state,
 				favoriteMovies: action.favoriteMovies,
 				isFavoriteMoviesLoadedFromStorage: true,
-			}
-		case ADD_MOVIE_TO_FAVORITE:
-		case REMOVE_MOVIE_FROM_FAVORITE:
+			};
+		case FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB:
+		case MOVIE_ADDED_TO_FAVORITE:
+		case MOVIE_REMOVED_FROM_FAVORITE:
 			return {
 				...state,
 				favoriteMovies: action.favoriteMovies,

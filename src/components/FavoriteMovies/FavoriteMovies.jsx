@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
-import axios from 'axios';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
-import {
-	URL_TO_MOVIE_INFO
-} from '../../constants/constants';
-import {
-	API_KEY,
-} from '../../constants/config';
 import {
 	removeMovieFromFavorites
 } from '../../actions/movies/movies';
@@ -18,102 +11,31 @@ import FavoriteMovieInfo from './FavoriteMovieInfo/FavoriteMovieInfo';
 export class FavoriteMovies extends Component {
 	static propTypes = {
 		isFavoriteMoviesLoadedFromStorage: Proptypes.bool.isRequired,
-		favoriteMovies: Proptypes.object.isRequired,
+		favoriteMovies: Proptypes.array.isRequired,
 	};
 
-	state = {
-		isFavoriteMoviesLoaded: false,
-		movies: [],
-	};
-
-	componentDidMount() {
-		const {
-			isFavoriteMoviesLoadedFromStorage,
-		} = this.props;
-
-		if (isFavoriteMoviesLoadedFromStorage) {
-			this.uploadMoviesInfo();
-		}
-	}
-
-	componentDidUpdate() {
-		const {
-			isFavoriteMoviesLoaded
-		} = this.state;
-		const {
-			isFavoriteMoviesLoadedFromStorage
-		} = this.props;
-
-		if (!isFavoriteMoviesLoaded
-			&& isFavoriteMoviesLoadedFromStorage
-		) {
-			this.uploadMoviesInfo();
-		}
-	}
-
-	uploadMoviesInfo = () => (
-		new Promise(res => {
-			const {
-				favoriteMovies,
-			} = this.props;
-			const favoriteMoviesInfo = [];
-
-			favoriteMovies.forEach((movieId) => {
-				favoriteMoviesInfo.push(this.getMovieInfo(movieId));
-			});
-
-			Promise.all(favoriteMoviesInfo)
-				.then(movies => {
-					this.setState({
-						movies,
-						isFavoriteMoviesLoaded: true,
-					});
-					res();
-				});
-		})
-	);
-
-	getMovieInfo = (movieId) => (
-		new Promise(res => {
-			axios.get(`${URL_TO_MOVIE_INFO}/${movieId}`, {
-				params: {
-					api_key: API_KEY,
-				}
-			})
-				.then(e => {
-					res(e.data);
-				});
-		})
-	);
-
-	onUnfavorite = (movieId, index) => {
+	onUnfavorite = (movie) => {
 		const {
 			removeMovieFromFavorites
 		} = this.props;
-		const {
-			movies
-		} = this.state;
 
-		movies.splice(index, 1);
-
-		removeMovieFromFavorites(movieId);
-		this.setState({ movies });
+		removeMovieFromFavorites(movie);
 	}
 
 	getMoviesListForRender() {
 		const {
-			movies,
-		} = this.state;
+			favoriteMovies,
+		} = this.props;
 
 		return (
 			<ul className="favorite-movies-list">
 				{
-					movies.map((movie, index) =>
+					favoriteMovies.map((movie) =>
 						<li key={movie.id}>
 							<FavoriteMovieInfo
 								movie={movie}
 								onUnfavorite={() =>
-									this.onUnfavorite(movie.id, index)
+									this.onUnfavorite(movie)
 								}
 							/>
 						</li>
@@ -125,11 +47,13 @@ export class FavoriteMovies extends Component {
 
 	render() {
 		const {
-			isFavoriteMoviesLoaded,
-			movies
-		} = this.state;
+			favoriteMovies,
+			isFavoriteMoviesLoadedFromStorage,
+		} = this.props;
 
-		if (!isFavoriteMoviesLoaded) return <Loading />
+		if (!isFavoriteMoviesLoadedFromStorage) {
+			return <Loading />;
+		}
 
 		return (
 			<React.Fragment>
@@ -139,7 +63,7 @@ export class FavoriteMovies extends Component {
 						My favorite
 					</span>
 					{
-						movies.length
+						favoriteMovies.length
 							? this.getMoviesListForRender()
 							:
 							<p className="favorite-empty-list">
@@ -147,20 +71,27 @@ export class FavoriteMovies extends Component {
 							</p>
 					}
 				</div>
-			</React.Fragment >
+			</React.Fragment>
 		);
 	}
 }
 
-const mapStateToProps = (state) => ({
-	favoriteMovies: state.movies.favoriteMovies,
-	isFavoriteMoviesLoadedFromStorage:
-		state.movies.isFavoriteMoviesLoadedFromStorage,
-});
+const mapStateToProps = (state) => {
+	const {
+		favoriteMovies,
+		isFavoriteMoviesLoadedFromStorage,
+	} = state.movies;
+
+	return {
+		favoriteMovies:
+			Object.keys(favoriteMovies).map(key => favoriteMovies[key]),
+		isFavoriteMoviesLoadedFromStorage,
+	};
+};
 
 const mapDispatchToProps = (dispatch) => ({
 	removeMovieFromFavorites:
-		(movieId) => dispatch(removeMovieFromFavorites(movieId)),
+		(movie) => dispatch(removeMovieFromFavorites(movie)),
 });
 
 export default connect(
