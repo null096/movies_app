@@ -91,15 +91,13 @@ export class MovieInfo extends Component {
 					descriptionImg={descriptionImg}
 					backToListLink={backToListLink}
 					nextMovieLink={this.getLinkToNextMovie()}
-				/>
-				<BackgroundImage
-					backgroundImgSrc={backgroundImgSrc}
-				/>
-				<FavoriteButton
 					onFavoriteButtonClick={() =>
 						this.onFavoriteButtonClick(movie)
 					}
 					isFavorite={isFavorite}
+				/>
+				<BackgroundImage
+					backgroundImgSrc={backgroundImgSrc}
 				/>
 			</React.Fragment>
 		);

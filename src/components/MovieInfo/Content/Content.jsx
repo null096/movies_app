@@ -9,6 +9,8 @@ export default function Content({
     descriptionImg,
     backToListLink,
     nextMovieLink,
+    isFavorite,
+    onFavoriteButtonClick
 }) {
     const releaseDateStr = new Date(movie.release_date).toLocaleDateString();
 
@@ -24,6 +26,8 @@ export default function Content({
                         movie={movie}
                         movieImgUrl={descriptionImg}
                         releaseDateStr={releaseDateStr}
+                        isFavorite={isFavorite}
+                        onFavoriteButtonClick={onFavoriteButtonClick}
                     />
                 </div>
             </div>
@@ -34,4 +38,6 @@ export default function Content({
 Content.propTypes = {
     movie: Proptypes.object.isRequired,
     descriptionImg: Proptypes.string.isRequired,
+    isFavorite: Proptypes.bool.isRequired,
+    onFavoriteButtonClick: Proptypes.func.isRequired,
 };
