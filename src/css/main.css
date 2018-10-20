@@ -134,7 +134,7 @@ header {
 }
 
 .movie-item:hover>div:not(.is-background-purple) {
-    background-color: rgb(50, 50, 50, 0.65);
+    background-color: rgba(50, 50, 50, 0.65);
 }
 
 .movie-item:hover .movie-title {
@@ -439,7 +439,7 @@ header {
     align-items: flex-start;
 }
 
-.favorite-movie-title-wrapper > * {
+.favorite-movie-title-wrapper>* {
     margin: 0 10px 4px 0;
 }
 
