@@ -6,7 +6,7 @@ import {
 	SET_UP_FAVORITE_LIST,
 	MOVIE_ADDED_TO_FAVORITE,
 	MOVIE_REMOVED_FROM_FAVORITE,
-	FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB
+	FAVORITE_MOVIES_UPDATED_IN_ANOTHER_TAB
 } from '../actionNames';
 import {
 	API_KEY,
@@ -67,7 +67,7 @@ export const setUpFavoriteList = () => ({
 });
 
 export const favoriteMoviesUpdatedInAnotherTab = (favoriteMovies) => ({
-	type: FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB,
+	type: FAVORITE_MOVIES_UPDATED_IN_ANOTHER_TAB,
 	favoriteMovies: favoriteMovies || {},
 });
 

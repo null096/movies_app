@@ -6,7 +6,7 @@ import {
 	SET_UP_FAVORITE_LIST,
 	MOVIE_ADDED_TO_FAVORITE,
 	MOVIE_REMOVED_FROM_FAVORITE,
-	FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB,
+	FAVORITE_MOVIES_UPDATED_IN_ANOTHER_TAB,
 } from '../../actions/actionNames';
 
 const initialState = {
@@ -45,7 +45,7 @@ function movies(state = initialState, action) {
 				favoriteMovies: action.favoriteMovies,
 				isFavoriteMoviesLoadedFromStorage: true,
 			};
-		case FAVORITE_LIST_UPDATED_IN_ANOTHER_TAB:
+		case FAVORITE_MOVIES_UPDATED_IN_ANOTHER_TAB:
 		case MOVIE_ADDED_TO_FAVORITE:
 		case MOVIE_REMOVED_FROM_FAVORITE:
 			return {
