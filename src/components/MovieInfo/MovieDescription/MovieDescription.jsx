@@ -18,7 +18,7 @@ function MovieDescription({
 				/>
 			</div>
 			<h2 className="modal-title">
-				{movie.title}
+				{movie.original_title}
 			</h2>
 			<div className="modal-add-to-favorite-wrapper">
 				<span
