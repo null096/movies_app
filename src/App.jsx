@@ -17,7 +17,7 @@ import Proptypes from 'prop-types';
 class App extends Component {
 	static propTypes = {
 		setUpFavoriteList: Proptypes.func.isRequired,
-		favoriteListUpdatedInAnotherTab: Proptypes.func.isRequired,
+		favoriteMoviesUpdatedInAnotherTab: Proptypes.func.isRequired,
 	};
 
 	componentDidMount() {
@@ -26,6 +26,7 @@ class App extends Component {
 		} = this.props;
 
 		setUpFavoriteList();
+
 		window.addEventListener('storage', this.onStorageChange);
 	}
 
@@ -35,11 +36,11 @@ class App extends Component {
 
 	onStorageChange = (e) => {
 		const {
-			favoriteListUpdatedInAnotherTab
+			favoriteMoviesUpdatedInAnotherTab
 		} = this.props;
 
 		if (e.key === 'favoriteMovies') {
-			favoriteListUpdatedInAnotherTab(JSON.parse(e.newValue));
+			favoriteMoviesUpdatedInAnotherTab(JSON.parse(e.newValue));
 		}
 	}
 
@@ -67,7 +68,7 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
 	setUpFavoriteList: () => dispatch(setUpFavoriteList()),
-	favoriteListUpdatedInAnotherTab: (favoriteMovies) =>
+	favoriteMoviesUpdatedInAnotherTab: (favoriteMovies) =>
 		dispatch(favoriteMoviesUpdatedInAnotherTab(favoriteMovies)),
 });
 
