@@ -20,11 +20,11 @@ import Content from './Content/Content';
 
 export class MovieInfo extends Component {
 	static propTypes = {
-		isMovieExists: Proptypes.bool.isRequired,
-		movieIndex: Proptypes.number.isRequired,
+		/*  */isMovieExists: Proptypes.bool.isRequired,
+		/*  */movieIndex: Proptypes.number.isRequired,
 		movie: Proptypes.object.isRequired,
-		numOfMoviesOnPage: Proptypes.number.isRequired,
-		isMoviesOnPageUploaded: Proptypes.bool.isRequired,
+		/*  */numOfMoviesOnPage: Proptypes.number.isRequired,
+		/*  */isMoviesOnPageUploaded: Proptypes.bool.isRequired,
 		isFavorite: Proptypes.bool.isRequired,
 	};
 

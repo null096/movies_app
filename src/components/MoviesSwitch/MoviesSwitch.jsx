@@ -8,6 +8,7 @@ import {
 
 import MovieInfo from '../MovieInfo/MovieInfo';
 import { Movies } from '../Movies/Movies';
+import MoviesInfoControl from '../MoviesInfoControl/MoviesInfoControl';
 
 export class MoviesSwitch extends Component {
 	static propTypes = {
@@ -50,10 +51,14 @@ export class MoviesSwitch extends Component {
 				<Route
 					path={`${match.url}/:movieIndex`}
 					render={(props) =>
-						<MovieInfo
+						<MoviesInfoControl
+							{...props}
+							
+						/>
+						/* <MovieInfo
 							{...props}
 							currentPage={currentPage}
-						/>
+						/> */
 					}
 				/>
 				<Route
