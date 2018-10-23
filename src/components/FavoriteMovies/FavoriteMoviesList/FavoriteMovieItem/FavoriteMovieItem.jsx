@@ -3,12 +3,12 @@ import Proptypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
 	URL_TO_MOVIE_IMAGE_W154,
-} from '../../../constants/constants';
+} from '../../../../constants/constants';
 import {
 	PAGE_WITH_FAVORITES,
-} from '../../../constants/routes';
+} from '../../../../constants/routes';
 
-export default function FavoriteMovieInfo({ movie, movieIndex, onUnfavorite }) {
+export default function FavoriteMovieItem({ movie, movieIndex, onUnfavorite }) {
 	return (
 		<div className="favorite-movie-info-container">
 			<Link
@@ -41,7 +41,7 @@ export default function FavoriteMovieInfo({ movie, movieIndex, onUnfavorite }) {
 	);
 }
 
-FavoriteMovieInfo.propTypes = {
+FavoriteMovieItem.propTypes = {
 	movie: Proptypes.object.isRequired,
 	movieIndex: Proptypes.number.isRequired,
 	onUnfavorite: Proptypes.func.isRequired,

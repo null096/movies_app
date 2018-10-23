@@ -4,12 +4,12 @@ import Proptypes from 'prop-types';
 import {
 	URL_TO_MOVIE_IMAGE_ORIGINAL,
 	URL_TO_MOVIE_IMAGE_W185,
-} from '../../constants/constants';
+} from '../../../constants/constants';
 import {
 	addMovieToFavorites,
 	removeMovieFromFavorites,
-} from '../../actions/movies/movies';
-import Header from '../Header/Header';
+} from '../../../actions/movies/movies';
+import Header from '../../Header/Header';
 import BackgroundImage from './BackgroundImage/BackgroundImage';
 import Content from './Content/Content';
 

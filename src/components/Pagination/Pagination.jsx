@@ -8,7 +8,7 @@ import {
 	MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE,
 } from '../../constants/constants';
 
-export class MoviesPaginaiton extends Component {
+export class Pagination extends Component {
 	static propTypes = {
 		numOfPages: Proptypes.number.isRequired,
 		currentPage: Proptypes.number.isRequired,
@@ -132,4 +132,4 @@ export class MoviesPaginaiton extends Component {
 	}
 }
 
-export default MoviesPaginaiton;
+export default Pagination;

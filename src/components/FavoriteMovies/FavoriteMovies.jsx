@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Proptypes from 'prop-types';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
-import FavoriteMovieInfo from './FavoriteMovieInfo/FavoriteMovieInfo';
+import FavoritemoviesList from './FavoriteMoviesList/FavoriteMoviesList';
 
 export class FavoriteMovies extends Component {
 	static propTypes = {
@@ -17,30 +17,6 @@ export class FavoriteMovies extends Component {
 		} = this.props;
 
 		removeMovieFromFavorites(movie);
-	}
-
-	getMoviesListForRender() {
-		const {
-			favoriteMovies,
-		} = this.props;
-
-		return (
-			<ul className="favorite-movies-list">
-				{
-					favoriteMovies.map((movie, index) =>
-						<li key={movie.id}>
-							<FavoriteMovieInfo
-								movie={movie}
-								movieIndex={index}
-								onUnfavorite={() =>
-									this.onUnfavorite(movie)
-								}
-							/>
-						</li>
-					)
-				}
-			</ul>
-		);
 	}
 
 	render() {
@@ -60,7 +36,11 @@ export class FavoriteMovies extends Component {
 					</span>
 					{
 						favoriteMovies.length
-							? this.getMoviesListForRender()
+							?
+							<FavoritemoviesList
+								favoriteMovies={favoriteMovies}
+								onUnfavorite={this.onUnfavorite}
+							/>
 							:
 							<p className="favorite-empty-list">
 								List is empty

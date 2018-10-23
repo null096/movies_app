@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	URL_TO_MOVIE_IMAGE_W185,
-} from '../../constants/constants';
+} from '../../../../constants/constants';
 import Proptypes from 'prop-types';
 
 export class MovieListItem extends Component {

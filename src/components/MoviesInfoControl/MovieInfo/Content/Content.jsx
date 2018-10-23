@@ -1,8 +1,8 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import BackToListLink from '../BackToListLink/BackToListLink';
-import NextMovieLink from '../NextMovieLink/NextMovieLink';
-import MovieDescription from '../MovieDescription/MovieDescription';
+import BackToListLink from './BackToListLink/BackToListLink';
+import NextMovieLink from './NextMovieLink/NextMovieLink';
+import MovieDescription from './MovieDescription/MovieDescription';
 
 export default function Content({
     movie,

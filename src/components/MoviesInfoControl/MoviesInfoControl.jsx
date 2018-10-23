@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import MovieInfo from '../MovieInfo/MovieInfo';
+import MovieInfo from './MovieInfo/MovieInfo';
 import Loading from '../Loading/Loading';
 
 export class MoviesInfoControl extends Component {

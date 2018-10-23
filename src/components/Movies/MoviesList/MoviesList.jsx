@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Proptypes from 'prop-types';
-import MovieListItem from '../MovieListItem/MovieListItem';
+import MovieListItem from './MovieListItem/MovieListItem';
 
 export class MoviesList extends Component {
 	static propTypes = {
