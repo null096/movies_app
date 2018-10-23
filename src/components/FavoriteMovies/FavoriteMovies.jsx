@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
-import {
-	removeMovieFromFavorites
-} from '../../actions/movies/movies';
 import FavoriteMovieInfo from './FavoriteMovieInfo/FavoriteMovieInfo';
 
 export class FavoriteMovies extends Component {
 	static propTypes = {
 		isFavoriteMoviesLoadedFromStorage: Proptypes.bool.isRequired,
 		favoriteMovies: Proptypes.array.isRequired,
+		removeMovieFromFavorites: Proptypes.func.isRequired,
 	};
 
 	onUnfavorite = (movie) => {
@@ -30,10 +27,11 @@ export class FavoriteMovies extends Component {
 		return (
 			<ul className="favorite-movies-list">
 				{
-					favoriteMovies.map((movie) =>
+					favoriteMovies.map((movie, index) =>
 						<li key={movie.id}>
 							<FavoriteMovieInfo
 								movie={movie}
+								movieIndex={index}
 								onUnfavorite={() =>
 									this.onUnfavorite(movie)
 								}
@@ -51,9 +49,7 @@ export class FavoriteMovies extends Component {
 			isFavoriteMoviesLoadedFromStorage,
 		} = this.props;
 
-		if (!isFavoriteMoviesLoadedFromStorage) {
-			return <Loading />;
-		}
+		if (!isFavoriteMoviesLoadedFromStorage) return <Loading />;
 
 		return (
 			<React.Fragment>
@@ -76,25 +72,4 @@ export class FavoriteMovies extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	const {
-		favoriteMovies,
-		isFavoriteMoviesLoadedFromStorage,
-	} = state.movies;
-
-	return {
-		favoriteMovies:
-			Object.keys(favoriteMovies).map(key => favoriteMovies[key]),
-		isFavoriteMoviesLoadedFromStorage,
-	};
-};
-
-const mapDispatchToProps = (dispatch) => ({
-	removeMovieFromFavorites:
-		(movie) => dispatch(removeMovieFromFavorites(movie)),
-});
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(FavoriteMovies);
+export default FavoriteMovies;

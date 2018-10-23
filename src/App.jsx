@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import MoviesSwitch from './components/MoviesSwitch/MoviesSwitch';
 import Page404 from './components/Page404/Page404';
-import FavoriteMovies from './components/FavoriteMovies/FavoriteMovies';
+import FavoriteSwitch from './components/FavoriteSwitch/FavoriteSwitch';
 import {
 	PAGE_WITH_MOVIES,
 	PAGE_WITH_FAVORITES,
@@ -54,7 +54,7 @@ class App extends Component {
 					/>
 					<Route
 						path={PAGE_WITH_FAVORITES}
-						component={FavoriteMovies}
+						component={FavoriteSwitch}
 					/>
 					<Route
 						path="*"

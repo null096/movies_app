@@ -396,8 +396,11 @@ header {
     align-items: flex-start;
 }
 
-.favorite-movie-info-container>img {
+.favorite-movie-info-img-wrapper {
     margin: 0 25px 0 0;
+}
+
+.favorite-movie-info-img {
     box-shadow: 0 0 22px rgba(0, 0, 0, 0.5);
 }
 
