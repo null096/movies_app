@@ -53,9 +53,11 @@ header {
 .dropdown-menu {
     display: none;
     position: absolute;
+    top: 32px;
+    right: 0;
+    width: 150px;
     background-color: rgb(130, 60, 160);
     border: 1px solid black;
-    min-width: 150px;
     z-index: 100;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
@@ -73,6 +75,11 @@ header {
 
 .dropdown-menu>a:not(:last-child) {
     border-bottom: 1px solid rgb(166, 166, 166);
+}
+
+.my-account-dropdown-wrapper {
+    position: relative;
+    margin: 0 1px 0 0;
 }
 
 .my-account-dropdown-wrapper:hover>.dropdown-menu {
@@ -405,7 +412,6 @@ header {
 }
 
 .favorite-movie-info {
-    height: 231px;
     width: 100%;
 }
 
