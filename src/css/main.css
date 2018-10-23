@@ -129,7 +129,7 @@ header {
 .movie-item {
     position: relative;
     width: 185px;
-    height: 235px;
+    height: 275px;
     margin: 15px 10px 20px;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
