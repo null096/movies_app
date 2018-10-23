@@ -1,50 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import {
 	URL_TO_MOVIE_IMAGE_ORIGINAL,
 	URL_TO_MOVIE_IMAGE_W185,
 } from '../../constants/constants';
 import {
-	PAGE_WITH_MOVIES
-} from '../../constants/routes';
-import {
 	addMovieToFavorites,
 	removeMovieFromFavorites,
 } from '../../actions/movies/movies';
 import Header from '../Header/Header';
 import BackgroundImage from './BackgroundImage/BackgroundImage';
-import Loading from '../Loading/Loading';
 import Content from './Content/Content';
 
 export class MovieInfo extends Component {
 	static propTypes = {
-		/*  */isMovieExists: Proptypes.bool.isRequired,
-		/*  */movieIndex: Proptypes.number.isRequired,
 		movie: Proptypes.object.isRequired,
-		/*  */numOfMoviesOnPage: Proptypes.number.isRequired,
-		/*  */isMoviesOnPageUploaded: Proptypes.bool.isRequired,
 		isFavorite: Proptypes.bool.isRequired,
-	};
-
-	getNextMovieIndex() {
-		const {
-			numOfMoviesOnPage,
-			movieIndex,
-		} = this.props;
-
-		return movieIndex === numOfMoviesOnPage - 1
-			? 0
-			: movieIndex + 1;
-	}
-
-	getLinkToNextMovie = () => {
-		const {
-			currentPage
-		} = this.props;
-
-		return `${PAGE_WITH_MOVIES}/${currentPage}/${this.getNextMovieIndex()}`;
+		backToListLink: Proptypes.string.isRequired,
+		nextMovieLink: Proptypes.string.isRequired,
+		removeMovieFromFavorites: Proptypes.func.isRequired,
+		addMovieToFavorites: Proptypes.func.isRequired,
 	};
 
 	onFavoriteButtonClick = (movie) => {
@@ -63,24 +39,14 @@ export class MovieInfo extends Component {
 
 	render() {
 		const {
-			isMovieExists,
 			movie,
-			currentPage,
-			isMoviesOnPageUploaded,
 			isFavorite,
+			backToListLink,
+			nextMovieLink,
 		} = this.props;
-
-		if (!isMoviesOnPageUploaded) return <Loading />;
-
-		if (!isMovieExists) return (
-			<Redirect
-				to={`${PAGE_WITH_MOVIES}/${currentPage}`}
-			/>
-		);
 
 		const backgroundImgSrc = `${URL_TO_MOVIE_IMAGE_ORIGINAL}${movie.poster_path}`;
 		const descriptionImg = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
-		const backToListLink = `${PAGE_WITH_MOVIES}/${currentPage}`;
 
 		return (
 			<React.Fragment>
@@ -89,7 +55,7 @@ export class MovieInfo extends Component {
 					movie={movie}
 					descriptionImg={descriptionImg}
 					backToListLink={backToListLink}
-					nextMovieLink={this.getLinkToNextMovie()}
+					nextMovieLink={nextMovieLink}
 					onFavoriteButtonClick={() =>
 						this.onFavoriteButtonClick(movie)
 					}
@@ -103,30 +69,9 @@ export class MovieInfo extends Component {
 	}
 }
 
-const mapStateToProps = (state, props) => {
-	const {
-		moviesOnPage,
-		isMoviesOnPageUploaded,
-		favoriteMovies
-	} = state.movies;
-	const movieIndex = parseInt(props.match.params.movieIndex, 10);
-	const numOfMoviesOnPage = moviesOnPage.length;
-	const movie = moviesOnPage[movieIndex] || {};
-	const isMovieExists = !!moviesOnPage[movieIndex];
-	const isFavorite =
-		isMovieExists
-			? !!favoriteMovies[movie.id]
-			: false;
-
-	return {
-		isMovieExists,
-		movieIndex,
-		movie,
-		numOfMoviesOnPage,
-		isMoviesOnPageUploaded,
-		isFavorite,
-	};
-};
+const mapStateToProps = (state, ownProps) => ({
+	isFavorite: !!state.movies.favoriteMovies[ownProps.movie.id],
+});
 
 const mapDispatchToProps = (dispatch) => ({
 	addMovieToFavorites:
@@ -137,5 +82,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
 )(MovieInfo);

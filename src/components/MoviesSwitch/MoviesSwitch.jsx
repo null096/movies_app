@@ -5,8 +5,6 @@ import Proptypes from 'prop-types';
 import {
 	uploadMoviesForPage
 } from '../../actions/movies/movies';
-
-import MovieInfo from '../MovieInfo/MovieInfo';
 import { Movies } from '../Movies/Movies';
 import MoviesInfoControl from '../MoviesInfoControl/MoviesInfoControl';
 
@@ -42,6 +40,7 @@ export class MoviesSwitch extends Component {
 		const {
 			numOfPages,
 			moviesOnPage,
+			isMoviesOnPageUploaded,
 			match,
 		} = this.props;
 		const currentPage = parseInt(match.params.page, 10);
@@ -53,12 +52,10 @@ export class MoviesSwitch extends Component {
 					render={(props) =>
 						<MoviesInfoControl
 							{...props}
-							
+							movies={moviesOnPage}
+							mainUrl={match.url}
+							isMoviesUploaded={isMoviesOnPageUploaded}
 						/>
-						/* <MovieInfo
-							{...props}
-							currentPage={currentPage}
-						/> */
 					}
 				/>
 				<Route
@@ -80,6 +77,7 @@ export class MoviesSwitch extends Component {
 const mapStateToProps = (state) => ({
 	moviesOnPage: state.movies.moviesOnPage,
 	numOfPages: state.movies.numOfPages,
+	isMoviesOnPageUploaded: state.movies.isMoviesOnPageUploaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
