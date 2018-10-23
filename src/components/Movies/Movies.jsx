@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MoviesList from './MoviesList/MoviesList';
-import Pagination from '../Pagination/Pagination';
+import MoviesPagination from './MoviesPagination/MoviesPagination';
 import Header from '../Header/Header';
 import Proptypes from 'prop-types';
 
@@ -25,7 +25,7 @@ export class Movies extends Component {
 					<MoviesList
 						moviesOnPage={moviesOnPage}
 					/>
-					<Pagination
+					<MoviesPagination
 						numOfPages={numOfPages}
 						currentPage={currentPage}
 					/>

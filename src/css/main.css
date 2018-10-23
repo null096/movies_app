@@ -228,11 +228,11 @@ header {
     color: green;
 }
 
-.is-first-in-pagination {
+.pagination li:first-of-type {
     border-radius: 5px 0px 0px 5px;
 }
 
-.is-last-in-pagination {
+.pagination li:last-of-type {
     border-radius: 0px 5px 5px 0px;
 }
 
@@ -589,5 +589,8 @@ header {
     }
     .modal-movie-info {
         grid-template-columns: 165px auto min-content;
+    }
+    .favorite-movie-info-img-wrapper {
+        margin: 0 10px 0 0;
     }
 }

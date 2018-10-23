@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Proptypes from 'prop-types';
+import Page404 from '../Page404/Page404';
 import {
 	uploadMoviesForPage
 } from '../../actions/movies/movies';
@@ -68,6 +69,10 @@ export class MoviesSwitch extends Component {
 							moviesOnPage={moviesOnPage}
 						/>
 					}
+				/>
+				<Route
+					path="*"
+					component={Page404}
 				/>
 			</Switch>
 		);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
+import Page404 from '../Page404/Page404';
 import {
 	removeMovieFromFavorites
 } from '../../actions/movies/movies';
@@ -47,6 +48,10 @@ export class FavoriteSwitch extends Component {
 							removeMovieFromFavorites={removeMovieFromFavorites}
 						/>
 					}
+				/>
+				<Route
+					path="*"
+					component={Page404}
 				/>
 			</Switch>
 		);

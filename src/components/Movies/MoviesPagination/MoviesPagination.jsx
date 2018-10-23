@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import {
 	PAGE_WITH_MOVIES
-} from '../../constants/routes';
+} from '../../../constants/routes';
 import {
-	MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE,
-} from '../../constants/constants';
+	NUM_OF_PAGES_ON_ONE_SIDE_FROM_CURRENT_PAGE,
+} from '../../../constants/constants';
 
-export class Pagination extends Component {
+export class MoviesPagination extends Component {
 	static propTypes = {
 		numOfPages: Proptypes.number.isRequired,
 		currentPage: Proptypes.number.isRequired,
@@ -26,7 +26,8 @@ export class Pagination extends Component {
 		const isFirstAndPrevPagesValid = currentPage > 1;
 
 		return isFirstAndPrevPagesValid
-			? [
+			?
+			[
 				<Link to={`${PAGE_WITH_MOVIES}/${1}`}>
 					First
 				</Link>,
@@ -34,7 +35,8 @@ export class Pagination extends Component {
 					Prev
 				</Link>
 			]
-			: [
+			:
+			[
 				<span>First</span>,
 				<span>Prev</span>
 			];
@@ -44,7 +46,8 @@ export class Pagination extends Component {
 		const isLastAndNextPagesValid = currentPage !== numOfPages;
 
 		return isLastAndNextPagesValid
-			? [
+			? 
+			[
 				<Link to={`${PAGE_WITH_MOVIES}/${currentPage + 1}`}>
 					Next
 				</Link>,
@@ -57,8 +60,8 @@ export class Pagination extends Component {
 
 	getNearPageWithNumber(currentPage, numOfPages) {
 		let res = [];
-		for (let i = currentPage - MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE;
-			i <= currentPage + MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE;
+		for (let i = currentPage - NUM_OF_PAGES_ON_ONE_SIDE_FROM_CURRENT_PAGE;
+			i <= currentPage + NUM_OF_PAGES_ON_ONE_SIDE_FROM_CURRENT_PAGE;
 			i++
 		) {
 			if (!this.isValidPage(i)) continue;
@@ -77,7 +80,7 @@ export class Pagination extends Component {
 			}
 		}
 		if (currentPage === 1
-			&& numOfPages > MAX_NUM_OF_NEAR_PAGES_ON_ONE_SIDE + 1
+			&& numOfPages > NUM_OF_PAGES_ON_ONE_SIDE_FROM_CURRENT_PAGE + 1
 		) {
 			res.push(<span>...</span>);
 		}
@@ -99,31 +102,21 @@ export class Pagination extends Component {
 		return pageLinks;
 	}
 
-	getClassForPageItem(i, a) {
-		return i === 0
-			?
-			'is-first-in-pagination'
-			: (i === 0 || i === a.length - 1)
-				?
-				'is-last-in-pagination'
-				:
-				'';
-	}
-
 	render() {
+		const {
+			numOfPages
+		} = this.props;
+
+		if (numOfPages <= 0) return null;
+
 		const pageLinks = this.getPagination();
 
 		return (
 			<div className="pagination">
 				<ul>
 					{
-						pageLinks.map((item, i, a) => (
-							<li
-								key={i}
-								className={this.getClassForPageItem(i, a)}
-							>
-								{item}
-							</li>
+						pageLinks.map((item, i) => (
+							<li key={i}>{item}</li>
 						))
 					}
 				</ul>
@@ -132,4 +125,4 @@ export class Pagination extends Component {
 	}
 }
 
-export default Pagination;
+export default MoviesPagination;
