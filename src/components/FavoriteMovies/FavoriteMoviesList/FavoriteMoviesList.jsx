@@ -7,7 +7,7 @@ export default function FavoriteMoviesList({ favoriteMovies, onUnfavorite }) {
 		<ul className="favorite-movies-list">
 			{
 				favoriteMovies.map((movie, index) =>
-					<li key={movie.id}>
+					<li key={`fav-movie-item-${movie.id}`}>
 						<FavoriteMovieItem
 							movie={movie}
 							movieIndex={index}

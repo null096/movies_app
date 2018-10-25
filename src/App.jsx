@@ -27,11 +27,11 @@ class App extends Component {
 
 		setUpFavoriteList();
 
-		window.addEventListener('storage', this.onStorageChange);
+		window.addEventListener('storage', this.onStorageChange, false);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('storage', this.onStorageChange);
+		window.removeEventListener('storage', this.onStorageChange, false);
 	}
 
 	onStorageChange = (e) => {

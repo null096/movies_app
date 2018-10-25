@@ -22,7 +22,7 @@ export class MoviesList extends Component {
 					{
 						moviesOnPage.map((movie, i) => (
 							<Route
-								key={movie.id}
+								key={`movie-list-item-${movie.id}`}
 								render={(props) =>
 									<MovieListItem
 										{...props}

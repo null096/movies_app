@@ -1,14 +1,40 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 
-function MovieDescription({
+const getFavoriteButton = (isFavorite, onFavoriteButtonClick) => (
+	<div className="modal-add-to-favorite-wrapper">
+		<span
+			className="modal-add-to-favorite no-text-select"
+			onClick={onFavoriteButtonClick}
+		>
+			{
+				isFavorite
+					? 'Unfavorite'
+					: 'Add to favorite'
+			}
+		</span>
+		<div
+			className="modal-add-to-favorite-mobile no-text-select"
+			onClick={onFavoriteButtonClick}
+		>
+			<span>
+				{
+					isFavorite
+						? '❤'
+						: '♡'
+				}
+			</span>
+		</div>
+	</div>
+);
+
+const MovieDescription = ({
 	movie,
 	movieImgUrl,
 	releaseDateStr,
 	isFavorite,
 	onFavoriteButtonClick
-}) {
-	return (
+}) => (
 		<div className="modal-movie-info">
 			<div className="modal-movie-img-wrapper">
 				<img
@@ -20,30 +46,7 @@ function MovieDescription({
 			<h2 className="modal-title">
 				{movie.original_title}
 			</h2>
-			<div className="modal-add-to-favorite-wrapper">
-				<span
-					className="modal-add-to-favorite no-text-select"
-					onClick={onFavoriteButtonClick}
-				>
-					{
-						isFavorite
-							? 'Unfavorite'
-							: 'Add to favorite'
-					}
-				</span>
-				<div
-					className="modal-add-to-favorite-mobile no-text-select"
-					onClick={onFavoriteButtonClick}
-				>
-					<span>
-						{
-							isFavorite
-								? '❤'
-								: '♡'
-						}
-					</span>
-				</div>
-			</div>
+			{getFavoriteButton(isFavorite, onFavoriteButtonClick)}
 			<p className="modal-info-text-first">
 				<span className="with-text-seperator">
 					Score: {movie.vote_average}
@@ -60,7 +63,7 @@ function MovieDescription({
 			</p>
 		</div>
 	);
-}
+
 
 MovieDescription.propTypes = {
 	movie: Proptypes.object.isRequired,
