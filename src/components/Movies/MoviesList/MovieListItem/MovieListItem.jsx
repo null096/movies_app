@@ -11,38 +11,15 @@ export class MovieListItem extends Component {
 		movieIndex: Proptypes.number.isRequired,
 	};
 
-	constructor(props) {
-		super(props);
-		const {
-			movie
-		} = this.props;
-		this.state = {
-			isImageLoaded: !movie.poster_path,
-		};
-
-		this.isMovieHasImage = movie.poster_path;
-		this.imgSrc = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
-	}
+	state = {
+		isImageLoaded: !this.props.movie.poster_path,
+	};
 
 	onImageLoad = () => {
 		this.setState({
 			isImageLoaded: true,
 		});
 	}
-
-	getMovieTitleWrapperClasses = () => (
-		[
-			'movie-title-wrapper',
-			!this.isMovieHasImage ? 'is-background-purple' : ''
-		].join(' ').trim()
-	);
-
-	getMovieTitleClasses = () => (
-		[
-			'movie-title',
-			!this.isMovieHasImage ? 'is-title-show' : '',
-		].join(' ').trim()
-	);
 
 	render() {
 		const {
@@ -53,20 +30,20 @@ export class MovieListItem extends Component {
 		const {
 			isImageLoaded
 		} = this.state;
-		const movieTitleWrapperClasses = this.getMovieTitleWrapperClasses();
-		const movieTitleClasses = this.getMovieTitleClasses();
-		
+		const isMovieHasImage = movie.poster_path;
+		const imgSrc = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
+
 		return (
 			<Link
 				to={`${match.url}/${movieIndex}`}
 				className="movie-item"
 			>
 				{
-					this.isMovieHasImage &&
+					isMovieHasImage &&
 					<React.Fragment>
 						<img
 							className="movie-image"
-							src={this.imgSrc}
+							src={imgSrc}
 							alt={movie.original_title}
 							onLoad={this.onImageLoad}
 						/>
@@ -80,8 +57,8 @@ export class MovieListItem extends Component {
 				}
 				{
 					isImageLoaded &&
-					<div className={movieTitleWrapperClasses}>
-						<div className={movieTitleClasses}>
+					<div className={`movie-title-wrapper ${!isMovieHasImage ? 'is-background-purple' : ''}`}>
+						<div className={`movie-title ${!isMovieHasImage ? 'is-title-show' : ''}`}>
 							{movie.original_title}
 						</div>
 					</div>

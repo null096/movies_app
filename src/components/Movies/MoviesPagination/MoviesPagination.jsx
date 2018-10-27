@@ -116,7 +116,7 @@ export class MoviesPagination extends Component {
 				<ul>
 					{
 						pageLinks.map((item, i) => (
-							<li key={i}>{item}</li>
+							<li key={`movies-pagination-${i}`}>{item}</li>
 						))
 					}
 				</ul>

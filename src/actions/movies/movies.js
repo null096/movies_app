@@ -6,7 +6,7 @@ import {
 	SET_UP_FAVORITE_LIST,
 	MOVIE_ADDED_TO_FAVORITE,
 	MOVIE_REMOVED_FROM_FAVORITE,
-	FAVORITE_MOVIES_UPDATED_IN_ANOTHER_TAB
+	FAVORITE_MOVIES_UPDATED
 } from '../actionNames';
 import {
 	API_KEY,
@@ -17,7 +17,7 @@ import {
 import {
 	putFavoriteMoviesToLocalStorage,
 	getFavoriteMoviesFromStorage
-} from './moviesUtils';
+} from '../utils/movies/movies';
 import axios from 'axios';
 
 export const uploadMoviesForPage = (page) => (dispatch) => {
@@ -67,7 +67,7 @@ export const setUpFavoriteList = () => ({
 });
 
 export const favoriteMoviesUpdatedInAnotherTab = (favoriteMovies) => ({
-	type: FAVORITE_MOVIES_UPDATED_IN_ANOTHER_TAB,
+	type: FAVORITE_MOVIES_UPDATED,
 	favoriteMovies: favoriteMovies || {},
 });
 
