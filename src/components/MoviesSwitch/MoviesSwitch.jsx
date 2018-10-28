@@ -18,13 +18,14 @@ export class MoviesSwitch extends Component {
 
 	componentDidMount() {
 		const {
-			uploadMoviesForPage
+			uploadMoviesForPage,
+			match
 		} = this.props;
-		const page = this.props.match.params.page;
+		const page = match.params.page;
 
 		uploadMoviesForPage(page);
 	}
-
+	
 	componentDidUpdate(prevProps) {
 		const {
 			uploadMoviesForPage
@@ -67,6 +68,7 @@ export class MoviesSwitch extends Component {
 							currentPage={currentPage}
 							numOfPages={numOfPages}
 							moviesOnPage={moviesOnPage}
+							isMoviesOnPageLoaded={isMoviesOnPageLoaded}
 						/>
 					}
 				/>
