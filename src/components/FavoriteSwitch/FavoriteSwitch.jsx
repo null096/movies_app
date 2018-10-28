@@ -11,14 +11,14 @@ import MoviesInfoControl from '../MoviesInfoControl/MoviesInfoControl';
 
 export class FavoriteSwitch extends Component {
 	static propTypes = {
-		isFavoriteMoviesLoadedFromStorage: Proptypes.bool.isRequired,
+		isFavoriteMoviesLoaded: Proptypes.bool.isRequired,
 		favoriteMovies: Proptypes.array.isRequired,
 		removeMovieFromFavorites: Proptypes.func.isRequired,
 	};
 
 	render() {
 		const {
-			isFavoriteMoviesLoadedFromStorage,
+			isFavoriteMoviesLoaded,
 			favoriteMovies,
 			removeMovieFromFavorites,
 			match,
@@ -32,7 +32,7 @@ export class FavoriteSwitch extends Component {
 						<MoviesInfoControl
 							{...props}
 							movies={favoriteMovies}
-							isMoviesUploaded={isFavoriteMoviesLoadedFromStorage}
+							isMoviesUploaded={isFavoriteMoviesLoaded}
 							mainUrl={match.url}
 						/>
 					}
@@ -42,8 +42,8 @@ export class FavoriteSwitch extends Component {
 					render={(props) =>
 						<FavoriteMovies
 							{...props}
-							isFavoriteMoviesLoadedFromStorage=
-							{isFavoriteMoviesLoadedFromStorage}
+							isFavoriteMoviesLoaded=
+							{isFavoriteMoviesLoaded}
 							favoriteMovies={favoriteMovies}
 							removeMovieFromFavorites={removeMovieFromFavorites}
 						/>
@@ -61,13 +61,13 @@ export class FavoriteSwitch extends Component {
 const mapStateToProps = (state) => {
 	const {
 		favoriteMovies,
-		isFavoriteMoviesLoadedFromStorage,
+		isFavoriteMoviesLoaded,
 	} = state.movies;
 
 	return {
 		favoriteMovies:
 			Object.keys(favoriteMovies).map(key => favoriteMovies[key]),
-		isFavoriteMoviesLoadedFromStorage,
+		isFavoriteMoviesLoaded,
 	};
 };
 

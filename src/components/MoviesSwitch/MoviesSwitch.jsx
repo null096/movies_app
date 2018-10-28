@@ -41,7 +41,7 @@ export class MoviesSwitch extends Component {
 		const {
 			numOfPages,
 			moviesOnPage,
-			isMoviesOnPageUploaded,
+			isMoviesOnPageLoaded,
 			match,
 		} = this.props;
 		const currentPage = parseInt(match.params.page, 10);
@@ -55,7 +55,7 @@ export class MoviesSwitch extends Component {
 							{...props}
 							movies={moviesOnPage}
 							mainUrl={match.url}
-							isMoviesUploaded={isMoviesOnPageUploaded}
+							isMoviesUploaded={isMoviesOnPageLoaded}
 						/>
 					}
 				/>
@@ -82,7 +82,7 @@ export class MoviesSwitch extends Component {
 const mapStateToProps = (state) => ({
 	moviesOnPage: state.movies.moviesOnPage,
 	numOfPages: state.movies.numOfPages,
-	isMoviesOnPageUploaded: state.movies.isMoviesOnPageUploaded,
+	isMoviesOnPageLoaded: state.movies.isMoviesOnPageLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

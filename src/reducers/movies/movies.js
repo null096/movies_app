@@ -10,11 +10,11 @@ import {
 } from '../../actions/actionNames';
 
 const initialState = {
-	isMoviesOnPageUploaded: false,
+	isMoviesOnPageLoaded: false,
 	moviesOnPage: [],
 	numOfPages: 0,
 	favoriteMovies: {},
-	isFavoriteMoviesLoadedFromStorage: false,
+	isFavoriteMoviesLoaded: false,
 };
 
 function movies(state = initialState, action) {
@@ -32,18 +32,18 @@ function movies(state = initialState, action) {
 		case MOVIES_LOADING_START:
 			return {
 				...state,
-				isMoviesOnPageUploaded: false,
+				isMoviesOnPageLoaded: false,
 			};
 		case MOVIES_LOADING_END:
 			return {
 				...state,
-				isMoviesOnPageUploaded: true,
+				isMoviesOnPageLoaded: true,
 			};
 		case SET_UP_FAVORITE_LIST:
 			return {
 				...state,
 				favoriteMovies: action.favoriteMovies,
-				isFavoriteMoviesLoadedFromStorage: true,
+				isFavoriteMoviesLoaded: true,
 			};
 		case FAVORITE_MOVIES_UPDATED:
 		case MOVIE_ADDED_TO_FAVORITE:

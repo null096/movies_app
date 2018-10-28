@@ -4,11 +4,14 @@ import {
 	URL_TO_MOVIE_IMAGE_W185,
 } from '../../../../constants/constants';
 import Proptypes from 'prop-types';
+import MovieImage from './MovieImage/MovieImage';
+import MovieTitle from './MovieTitle/MovieTitle';
 
 export class MovieListItem extends Component {
 	static propTypes = {
 		movie: Proptypes.object.isRequired,
 		movieIndex: Proptypes.number.isRequired,
+		match: Proptypes.object.isRequired,
 	};
 
 	state = {
@@ -30,39 +33,27 @@ export class MovieListItem extends Component {
 		const {
 			isImageLoaded
 		} = this.state;
-		const isMovieHasImage = movie.poster_path;
-		const imgSrc = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
-
+		const isMovieHasImage = !!movie.poster_path;
+		const movieImage = `${URL_TO_MOVIE_IMAGE_W185}${movie.poster_path}`;
+		const movieTitle = movie.original_title;
+		
 		return (
 			<Link
 				to={`${match.url}/${movieIndex}`}
 				className="movie-item"
 			>
-				{
-					isMovieHasImage &&
-					<React.Fragment>
-						<img
-							className="movie-image"
-							src={imgSrc}
-							alt={movie.original_title}
-							onLoad={this.onImageLoad}
-						/>
-						{
-							!isImageLoaded &&
-							<div className="movie-image-loading">
-								<img src="/img/spinner.gif" alt="Loading..." />
-							</div>
-						}
-					</React.Fragment>
-				}
-				{
-					isImageLoaded &&
-					<div className={`movie-title-wrapper ${!isMovieHasImage ? 'is-background-purple' : ''}`}>
-						<div className={`movie-title ${!isMovieHasImage ? 'is-title-show' : ''}`}>
-							{movie.original_title}
-						</div>
-					</div>
-				}
+				<MovieImage
+					isMovieHasImage={isMovieHasImage}
+					onImageLoad={this.onImageLoad}
+					isImageLoaded={isImageLoaded}
+					movieImage={movieImage}
+					alt={movieTitle}
+				/>
+				<MovieTitle
+					isMovieHasImage={isMovieHasImage}
+					movieTitle={movieTitle}
+					isImageLoaded={isImageLoaded}
+				/>
 			</Link>
 		);
 	}

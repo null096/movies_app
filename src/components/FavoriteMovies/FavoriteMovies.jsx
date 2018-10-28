@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Proptypes from 'prop-types';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
-import FavoritemoviesList from './FavoriteMoviesList/FavoriteMoviesList';
+import FavoriteMoviesList from './FavoriteMoviesList/FavoriteMoviesList';
 
 export class FavoriteMovies extends Component {
 	static propTypes = {
-		isFavoriteMoviesLoadedFromStorage: Proptypes.bool.isRequired,
+		isFavoriteMoviesLoaded: Proptypes.bool.isRequired,
 		favoriteMovies: Proptypes.array.isRequired,
 		removeMovieFromFavorites: Proptypes.func.isRequired,
 	};
@@ -22,10 +22,10 @@ export class FavoriteMovies extends Component {
 	render() {
 		const {
 			favoriteMovies,
-			isFavoriteMoviesLoadedFromStorage,
+			isFavoriteMoviesLoaded,
 		} = this.props;
 
-		if (!isFavoriteMoviesLoadedFromStorage) return <Loading />;
+		if (!isFavoriteMoviesLoaded) return <Loading />;
 
 		return (
 			<React.Fragment>
@@ -34,18 +34,10 @@ export class FavoriteMovies extends Component {
 					<span className="favorite-movies-title">
 						My favorite
 					</span>
-					{
-						favoriteMovies.length
-							?
-							<FavoritemoviesList
-								favoriteMovies={favoriteMovies}
-								onUnfavorite={this.onUnfavorite}
-							/>
-							:
-							<p className="favorite-empty-list">
-								List is empty
-							</p>
-					}
+					<FavoriteMoviesList
+						favoriteMovies={favoriteMovies}
+						onUnfavorite={this.onUnfavorite}
+					/>
 				</div>
 			</React.Fragment>
 		);
