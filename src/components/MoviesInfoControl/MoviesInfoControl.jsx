@@ -9,7 +9,7 @@ export class MoviesInfoControl extends Component {
 		movies: Proptypes.array.isRequired,
 		mainUrl: Proptypes.string.isRequired,
 		match: Proptypes.object.isRequired,
-		isMoviesUploaded: Proptypes.bool.isRequired,
+		isMoviesLoaded: Proptypes.bool.isRequired,
 	};
 
 	getNextMovieIndex() {
@@ -37,12 +37,12 @@ export class MoviesInfoControl extends Component {
 			mainUrl,
 			movies,
 			match,
-			isMoviesUploaded,
+			isMoviesLoaded,
 		} = this.props;
 		const movieIndex = parseInt(match.params.movieIndex, 10);
 		const movie = movies[movieIndex];
 
-		if (!isMoviesUploaded) return <Loading />;
+		if (!isMoviesLoaded) return <Loading />;
 
 		if (!movies.length) return <Redirect to={mainUrl} />;
 

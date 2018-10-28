@@ -55,7 +55,7 @@ export class MoviesSwitch extends Component {
 							{...props}
 							movies={moviesOnPage}
 							mainUrl={match.url}
-							isMoviesUploaded={isMoviesOnPageLoaded}
+							isMoviesLoaded={isMoviesOnPageLoaded}
 						/>
 					}
 				/>

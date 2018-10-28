@@ -32,7 +32,7 @@ export class FavoriteSwitch extends Component {
 						<MoviesInfoControl
 							{...props}
 							movies={favoriteMovies}
-							isMoviesUploaded={isFavoriteMoviesLoaded}
+							isMoviesLoaded={isFavoriteMoviesLoaded}
 							mainUrl={match.url}
 						/>
 					}
