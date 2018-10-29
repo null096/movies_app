@@ -1,16 +1,18 @@
 import {
 	MOVIES_ON_PAGE_UPDATED,
 	NUM_OF_MOVIES_PAGE_UPDATED,
-	MOVIES_LOADING_START,
-	MOVIES_LOADING_END,
+	MOVIES_LOADING_STARTED,
 	SET_UP_FAVORITE_LIST,
 	MOVIE_ADDED_TO_FAVORITE,
 	MOVIE_REMOVED_FROM_FAVORITE,
 	FAVORITE_MOVIES_UPDATED,
+	MOVIES_LOADING_SUCCESS,
+	MOVIES_LOADING_FAILURE,
 } from '../../actions/actionNames';
 
 const initialState = {
 	isMoviesOnPageLoaded: false,
+	moviesOnPageError: '',
 	moviesOnPage: [],
 	numOfPages: 0,
 	favoriteMovies: {},
@@ -29,16 +31,23 @@ function movies(state = initialState, action) {
 				...state,
 				numOfPages: action.numOfPages,
 			};
-		case MOVIES_LOADING_START:
+		case MOVIES_LOADING_STARTED:
 			return {
 				...state,
 				isMoviesOnPageLoaded: false,
+				moviesOnPageError: '',
 			};
-		case MOVIES_LOADING_END:
+		case MOVIES_LOADING_SUCCESS:
 			return {
 				...state,
 				isMoviesOnPageLoaded: true,
 			};
+		case MOVIES_LOADING_FAILURE:
+			return {
+				...state,
+				isMoviesOnPageLoaded: true,
+				moviesOnPageError: action.moviesOnPageError,
+			}
 		case SET_UP_FAVORITE_LIST:
 			return {
 				...state,

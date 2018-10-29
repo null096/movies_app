@@ -493,6 +493,19 @@ header {
     user-select: none;
 }
 
+.error-page-container {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-page-reload-btn {
+    width: 150px;
+    height: 32px;
+}
+
 @media screen and (max-width: 1080px) {
     .movie-list,
     .header-wrapper {

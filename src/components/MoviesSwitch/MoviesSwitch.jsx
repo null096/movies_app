@@ -8,6 +8,7 @@ import {
 } from '../../actions/movies/movies';
 import { Movies } from '../Movies/Movies';
 import MoviesInfoControl from '../MoviesInfoControl/MoviesInfoControl';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 export class MoviesSwitch extends Component {
 	static propTypes = {
@@ -15,6 +16,7 @@ export class MoviesSwitch extends Component {
 		moviesOnPage: Proptypes.array.isRequired,
 		uploadMoviesForPage: Proptypes.func.isRequired,
 		isMoviesOnPageLoaded: Proptypes.bool.isRequired,
+		moviesOnPageError: Proptypes.string.isRequired,
 	};
 
 	componentDidMount() {
@@ -26,7 +28,7 @@ export class MoviesSwitch extends Component {
 
 		uploadMoviesForPage(page);
 	}
-	
+
 	componentDidUpdate(prevProps) {
 		const {
 			uploadMoviesForPage
@@ -44,9 +46,14 @@ export class MoviesSwitch extends Component {
 			numOfPages,
 			moviesOnPage,
 			isMoviesOnPageLoaded,
+			moviesOnPageError,
 			match,
 		} = this.props;
 		const currentPage = parseInt(match.params.page, 10);
+
+		if (moviesOnPageError) return (
+			<ErrorPage error={moviesOnPageError} />
+		);
 
 		return (
 			<Switch>
@@ -86,6 +93,7 @@ const mapStateToProps = (state) => ({
 	moviesOnPage: state.movies.moviesOnPage,
 	numOfPages: state.movies.numOfPages,
 	isMoviesOnPageLoaded: state.movies.isMoviesOnPageLoaded,
+	moviesOnPageError: state.movies.moviesOnPageError,
 });
 
 const mapDispatchToProps = (dispatch) => ({

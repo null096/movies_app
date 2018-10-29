@@ -1,12 +1,13 @@
 import {
 	MOVIES_ON_PAGE_UPDATED,
 	NUM_OF_MOVIES_PAGE_UPDATED,
-	MOVIES_LOADING_START,
-	MOVIES_LOADING_END,
+	MOVIES_LOADING_STARTED,
 	SET_UP_FAVORITE_LIST,
 	MOVIE_ADDED_TO_FAVORITE,
 	MOVIE_REMOVED_FROM_FAVORITE,
-	FAVORITE_MOVIES_UPDATED
+	FAVORITE_MOVIES_UPDATED,
+	MOVIES_LOADING_FAILURE,
+	MOVIES_LOADING_SUCCESS,
 } from '../actionNames';
 import {
 	API_KEY,
@@ -21,7 +22,7 @@ import {
 import axios from 'axios';
 
 export const uploadMoviesForPage = (page) => (dispatch) => {
-	dispatch(moviesLoadingStart());
+	dispatch(moviesLoadingStarted());
 	axios.get(URL_TO_MOVIES_NOW_PLAYING, {
 		params: {
 			api_key: API_KEY,
@@ -36,12 +37,25 @@ export const uploadMoviesForPage = (page) => (dispatch) => {
 
 			dispatch(numOfMoviesPageUpdated(total_pages));
 			dispatch(moviesOnPageUpdated(moviesOnPage));
+			dispatch(moviesLoadingSuccess());
 		})
 		.catch((e) => {
-			console.error(e);
-		})
-		.finally(() => dispatch(moviesLoadingEnd()));
+			const errorMessage =
+				e.response
+					? e.response.data.status_message
+					: 'Error Occurred';
+			dispatch(moviesLoadingFailure(errorMessage));
+		});
 };
+
+export const moviesLoadingSuccess = () => ({
+	type: MOVIES_LOADING_SUCCESS,
+});
+
+export const moviesLoadingFailure = (moviesOnPageError) => ({
+	type: MOVIES_LOADING_FAILURE,
+	moviesOnPageError,
+});
 
 export const numOfMoviesPageUpdated = (numOfPages) => ({
 	type: NUM_OF_MOVIES_PAGE_UPDATED,
@@ -53,12 +67,8 @@ export const moviesOnPageUpdated = (moviesOnPage) => ({
 	moviesOnPage,
 });
 
-export const moviesLoadingStart = () => ({
-	type: MOVIES_LOADING_START,
-});
-
-export const moviesLoadingEnd = () => ({
-	type: MOVIES_LOADING_END,
+export const moviesLoadingStarted = () => ({
+	type: MOVIES_LOADING_STARTED,
 });
 
 export const setUpFavoriteList = () => ({
