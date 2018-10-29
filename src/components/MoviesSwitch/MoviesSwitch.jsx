@@ -14,6 +14,7 @@ export class MoviesSwitch extends Component {
 		numOfPages: Proptypes.number.isRequired,
 		moviesOnPage: Proptypes.array.isRequired,
 		uploadMoviesForPage: Proptypes.func.isRequired,
+		isMoviesOnPageLoaded: Proptypes.bool.isRequired,
 	};
 
 	componentDidMount() {
