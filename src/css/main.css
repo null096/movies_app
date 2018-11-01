@@ -79,7 +79,7 @@ header {
 
 .my-account-dropdown-wrapper {
     position: relative;
-    margin: 0 1px 0 0;
+    margin: 0 10px 0;
 }
 
 .my-account-dropdown-wrapper:hover>.dropdown-menu {
@@ -88,7 +88,6 @@ header {
 
 .my-account-dropdown {
     height: 32px;
-    margin: 0 10px;
     border-radius: 5px;
     border: 1px white solid;
     display: flex;
